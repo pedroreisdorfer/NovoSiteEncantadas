@@ -30,6 +30,19 @@ namespace WebEncantadas.Controllers
 
         public IActionResult Index() //Nome da função deve ser o mesmo que o nome da sua controller
         {
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(string.Format("Valor gerado: {0}", 15), QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                qrCode.GetGraphic(20).Save(ms, ImageFormat.Png);
+                ViewData["QRCodeImage"] = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
+            }
+
+
+
             return View();
         }
 
@@ -62,7 +75,7 @@ namespace WebEncantadas.Controllers
 
         //    // Exibir a imagem do QRCode na página
         //    return File(filePath, "image/png");
-           
+
         //}
 
         //public IActionResult GeradorQRCoder()
@@ -84,7 +97,19 @@ namespace WebEncantadas.Controllers
 
 
 
+        //public IActionResult Index()
+        //{
+        //    QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        //    QRCodeData qrCodeData = qrGenerator.CreateQrCode(string.Format("Valor gerado: {0}", valor), QRCodeGenerator.ECCLevel.Q);
+        //    QRCode qrCode = new QRCode(qrCodeData);
 
+        //    using (MemoryStream ms = new MemoryStream())
+        //    {
+        //        qrCode.GetGraphic(20).Save(ms, ImageFormat.Png);
+        //        ViewData["QRCodeImage"] = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
+        //    }
+        //    return View();
+        //}
 
 
 

@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Ingresso";
+}
+
+<style>
+    #mesa_circular {
+        background-color: black;
+        border: 2px solid red;
+        height: 13rem;
+        width: 13rem;
+        border-radius: 118px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mesaPrincesas {
+        width: 9rem;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        align-items: center;
+        align-content: center;
+        margin: 0 auto;
+    }
+
+
+    .cadeira1 {
+        background-color: black;
+        border: 1px solid red;
+        width: 2rem;
+        height: 2rem;
+   
+      /*  position: relative;
+       
+        border-radius: 0 20px 20px 0;
+        padding: 10px 20px;
+        transform: skew(-20deg);*/
+    }
+
+    .divDasMesas {
+        width: 15rem;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+
+ 
+    }
+
+    .cadeiras{
+        width: 2rem;
+    }
+
+/*    button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        transform: skew(-20deg);
+        transform-origin: 0 0;
+        border-radius: 0 0 0 50%;
+    }*/
+
+
+</style>
+
+<h1>Ingresso</h1>
+
+<div class="divDasMesas">
+    <div class="cadeiras">
+        <button id="cadeira1" class="cadeira1">C1</button>
+
+    </div>
+
+    <div id="mesa_circular">
+        <div class="mesaPrincesas">Mesa das princesas</div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

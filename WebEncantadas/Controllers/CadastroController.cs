@@ -8,8 +8,6 @@ namespace WebEncantadas.Controllers
 {
     public class CadastroController : Controller
     {
-
-
         [HttpGet]
         public IActionResult Create()
         {
