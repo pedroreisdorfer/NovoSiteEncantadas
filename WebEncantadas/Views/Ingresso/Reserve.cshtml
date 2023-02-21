@@ -8,12 +8,54 @@
 </head>
 
 <style>
-   .salaoMesas{
-       background-color: #f1e7c5;
-       border: 2px solid #80bca3;
-       width: 30rem;
-       height: 25rem;
-   }
+        #mesa_circular2{
+            background-color: #FFFFFF;
+            border: 2px solid black;
+            height: 14rem;
+            width: 14rem;
+            border-radius: 118px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+          #mesa_circular3{
+            background-color: #FFFFFF;
+            border: 2px solid black;
+            height: 14rem;
+            width: 14rem;
+            border-radius: 118px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+          #mesa_circular4  {
+            background-color: #FFFFFF;
+            border: 2px solid black;
+            height: 14rem;
+            width: 14rem;
+            border-radius: 118px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+           
+        }
+
+        .divisao_1{
+            display: flex;
+            flex-direction: column;
+            margin-left: 4rem;
+        }
+
+         .divisao_2{
+            display:flex;
+            flex-direction: column;
+            margin-left: 4rem;
+        }
 </style>
 
  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -22,12 +64,36 @@
 
 <div class="salaoMesas">
 
+    <div class="divisao_1" >
+          <div id="mesa_circular">
+            @for (int i = 1; i <= 8; i++){
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+            }
+        </div>
 
-    <div id="mesa_circular">
+        <div id="mesa_circular2">
         @for (int i = 1; i <= 8; i++){
                 <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
         }
+        </div>
     </div>
+      
+    <div class="divisao_2">
+             <div id="mesa_circular3">
+            @for (int i = 1; i <= 8; i++){
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+            }
+        </div>
+
+           <div id="mesa_circular4">
+            @for (int i = 1; i <= 8; i++){
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+            }
+        </div>
+    </div>
+      
+
+
 
     <div>
         <div>
