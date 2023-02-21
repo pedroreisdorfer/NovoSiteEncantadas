@@ -3,83 +3,65 @@
     ViewData["Title"] = "Ingresso";
 }
 
+<head>
+        <link rel="stylesheet" href="~/css/style_Reserve.css" />
+</head>
+
 <style>
-    #mesa_circular {
-        background-color: black;
-        border: 2px solid red;
-        height: 13rem;
-        width: 13rem;
-        border-radius: 118px;
-        display: flex;
-        align-items: center;
-    }
-
-    .mesaPrincesas {
-        width: 9rem;
-        display: flex;
-        flex-direction: column;
-        color: white;
-        align-items: center;
-        align-content: center;
-        margin: 0 auto;
-    }
-
-
-    .cadeira1 {
-        background-color: black;
-        border: 1px solid red;
-        width: 2rem;
-        height: 2rem;
-   
-      /*  position: relative;
-       
-        border-radius: 0 20px 20px 0;
-        padding: 10px 20px;
-        transform: skew(-20deg);*/
-    }
-
-    .divDasMesas {
-        width: 15rem;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-
- 
-    }
-
-    .cadeiras{
-        width: 2rem;
-    }
-
-/*    button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: inherit;
-        transform: skew(-20deg);
-        transform-origin: 0 0;
-        border-radius: 0 0 0 50%;
-    }*/
-
-
+   .salaoMesas{
+       background-color: #f1e7c5;
+       border: 2px solid #80bca3;
+       width: 30rem;
+       height: 25rem;
+   }
 </style>
 
-<h1>Ingresso</h1>
+ <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
-<div class="divDasMesas">
-    <div class="cadeiras">
-        <button id="cadeira1" class="cadeira1">C1</button>
+<h1>Reserva de ingressos</h1>
 
-    </div>
+<div class="salaoMesas">
+
 
     <div id="mesa_circular">
-        <div class="mesaPrincesas">Mesa das princesas</div>
+        @for (int i = 1; i <= 8; i++){
+                <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+        }
     </div>
 
+    <div>
+        <div>
+            Valor total:
+             <span id="totalCompra"></span>
+        </div>
+    </div>
 </div>
+
+
+<script>
+
+
+   function cadeiraSelecionada(botao) {      
+        botao.classList.toggle("selecionada"); // faz com que adicione class "selecionada" caso a mesma não exista. Caso clicar no botão de novo e a class "selecionada" existir, eu removo ela.
+         atualizarValorTotal();
+   }
+   
+   function atualizarValorTotal() {
+        var numero_deCadeiras = $('.cadeira.selecionada').length; // obtém o número de cadeiras selecionadas
+        $.ajax({
+            url: '@Url.Action("CalcularValorTotal", "Pagamento")',
+            data: { numero_deCadeiras: numero_deCadeiras },
+            success: function (data) {
+                $('#totalCompra').html('R$ ' + data); // atualiza o valor total na tela
+            }
+        });
+    }
+
+    $(function () {
+        atualizarValorTotal(); // atualiza o valor total na página carregada
+    });
+
+</script>
 
 
 @section Scripts {
