@@ -1,7 +1,29 @@
-﻿
+﻿@using WebEncantadas;
+@using WebEncantadas.Data.Context;
+@using System.Configuration;
+@using System.Data.SqlClient;
+
+
+
 @{
     ViewData["Title"] = "Ingresso";
 }
+
+@{
+    var connection = ConnectionManager.GetConnection();
+    connection.Open();
+    var command = new SqlCommand("SELECT valor_cadeira FROM dbo.reserva_ingressos WHERE id = 1", connection);
+    decimal valor_cadeira = 0;
+    var reader = command.ExecuteReader();
+     if (reader.Read())
+    {
+        valor_cadeira = reader.GetDecimal(0); // valor da mesa
+        // use a variável valor para exibir o valor na sua página HTML
+    }
+}
+
+
+
 
 <head>
         <link rel="stylesheet" href="~/css/style_Reserve.css" />
@@ -91,17 +113,18 @@
             }
         </div>
     </div>
-      
-
-
 
     <div>
         <div>
             Valor total:
              <span id="totalCompra"></span>
+
+             
         </div>
     </div>
 </div>
+
+<p>O valor da mesa é @valor_cadeira.</p>
 
 
 <script>
