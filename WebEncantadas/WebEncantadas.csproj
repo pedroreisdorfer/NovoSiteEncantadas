@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="QrCode.Net" Version="0.4.0" />
     <PackageReference Include="QRCoderNetCore" Version="1.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="ZXing" Version="2.1.1" />
     <PackageReference Include="ZXing.Net" Version="0.16.8" />
     <PackageReference Include="ZXing.Net.Bindings.ImageSharp" Version="0.16.13" />
