@@ -11,13 +11,18 @@
 @{
     var connection = ConnectionManager.GetConnection();
     connection.Open();
-    var command = new SqlCommand("SELECT valor_cadeira FROM dbo.reserva_ingressos WHERE id = 1", connection);
+    var command = new SqlCommand("SELECT num_mesa, valor_cadeira FROM dbo.reserva_ingressos WHERE id = 1", connection);
     decimal valor_cadeira = 0;
-    var reader = command.ExecuteReader();
-     if (reader.Read())
+
+    int num_mesa = 0;
+    var valores_cadeira = new Dictionary<int, decimal>();
+    var reader = command.ExecuteReader(); // função é chamada no objeto SqlCommand para executar a consulta SQL e retornar um objeto SqlDataReader que pode ser usado para ler as linhas do resultado da consulta.
+     while (reader.Read()) //A instrução if verifica se há alguma linha no resultado da consulta usando o método Read() do objeto SqlDataReader. Se houver pelo menos uma linha, o valor da coluna "valor_cadeira" é lido na variável "valor_cadeira" usando o método GetDecimal() do objeto SqlDataReader.
     {
-        valor_cadeira = reader.GetDecimal(0); // valor da mesa
+        num_mesa = reader.GetInt32(0);
+        valor_cadeira = reader.GetDecimal(1);; // valor da cadeira
         // use a variável valor para exibir o valor na sua página HTML
+        valores_cadeira[num_mesa] = valor_cadeira;
     }
 }
 
@@ -28,57 +33,6 @@
         <link rel="stylesheet" href="~/css/style_Reserve.css" />
 </head>
 
-<style>
-        #mesa_circular2{
-            background-color: #FFFFFF;
-            border: 2px solid black;
-            height: 14rem;
-            width: 14rem;
-            border-radius: 118px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
-          #mesa_circular3{
-            background-color: #FFFFFF;
-            border: 2px solid black;
-            height: 14rem;
-            width: 14rem;
-            border-radius: 118px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-          #mesa_circular4  {
-            background-color: #FFFFFF;
-            border: 2px solid black;
-            height: 14rem;
-            width: 14rem;
-            border-radius: 118px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 3rem;
-           
-        }
-
-        .divisao_1{
-            display: flex;
-            flex-direction: column;
-            margin-left: 4rem;
-        }
-
-         .divisao_2{
-            display:flex;
-            flex-direction: column;
-            margin-left: 4rem;
-        }
-</style>
-
  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 <h1>Reserva de ingressos</h1>
@@ -88,13 +42,13 @@
     <div class="divisao_1" >
           <div id="mesa_circular">
             @for (int i = 1; i <= 8; i++){
-                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="1">@i</button>
             }
         </div>
 
         <div id="mesa_circular2">
         @for (int i = 1; i <= 8; i++){
-                <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+                <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
         }
         </div>
     </div>
@@ -102,13 +56,13 @@
     <div class="divisao_2">
              <div id="mesa_circular3">
             @for (int i = 1; i <= 8; i++){
-                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
             }
         </div>
 
            <div id="mesa_circular4">
             @for (int i = 1; i <= 8; i++){
-                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)">@i</button>
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
             }
         </div>
     </div>
@@ -127,7 +81,7 @@
 
 
 <script>
-
+    //var valores_cadeira = @Html.Raw(Json.Serialize(valores_cadeira));
 
    function cadeiraSelecionada(botao) {      
         botao.classList.toggle("selecionada"); // faz com que adicione class "selecionada" caso a mesma não exista. Caso clicar no botão de novo e a class "selecionada" existir, eu removo ela.

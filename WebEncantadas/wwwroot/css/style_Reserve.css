@@ -137,3 +137,51 @@
     display: flex;
     margin-left: 7rem;
 }
+
+#mesa_circular2 {
+    background-color: #FFFFFF;
+    border: 2px solid black;
+    height: 14rem;
+    width: 14rem;
+    border-radius: 118px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+#mesa_circular3 {
+    background-color: #FFFFFF;
+    border: 2px solid black;
+    height: 14rem;
+    width: 14rem;
+    border-radius: 118px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+#mesa_circular4 {
+    background-color: #FFFFFF;
+    border: 2px solid black;
+    height: 14rem;
+    width: 14rem;
+    border-radius: 118px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.divisao_1 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+}
+
+.divisao_2 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+}
