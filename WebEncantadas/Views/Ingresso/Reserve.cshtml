@@ -56,13 +56,13 @@
     <div class="divisao_2">
              <div id="mesa_circular3">
             @for (int i = 1; i <= 8; i++){
-                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="3">@i</button>
             }
         </div>
 
            <div id="mesa_circular4">
             @for (int i = 1; i <= 8; i++){
-                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
+                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="4">@i</button>
             }
         </div>
     </div>
@@ -81,7 +81,7 @@
 
 
 <script>
-    //var valores_cadeira = @Html.Raw(Json.Serialize(valores_cadeira));
+   
 
    function cadeiraSelecionada(botao) {      
         botao.classList.toggle("selecionada"); // faz com que adicione class "selecionada" caso a mesma não exista. Caso clicar no botão de novo e a class "selecionada" existir, eu removo ela.

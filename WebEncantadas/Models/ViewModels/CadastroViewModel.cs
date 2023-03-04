@@ -10,6 +10,7 @@ namespace WebEncantadas.Models.ViewModels
     {
         public string Nome { get; set; }
         public string Email { get; set; }
+        public int Contato { get; set; }
         public string NomeCrianca { get; set; }
         public int IdadeCrianca { get; set; }
 
@@ -17,15 +18,16 @@ namespace WebEncantadas.Models.ViewModels
         {
         }
 
-        public CadastroViewModel(string id, string nome, string email, string NomeCrianca, int IdadeCrianca)
-            : this(nome, email, NomeCrianca, IdadeCrianca)
+        public CadastroViewModel(string id, string nome, int contato, string email, string NomeCrianca, int IdadeCrianca)
+            : this(nome, contato, email, NomeCrianca, IdadeCrianca)
         {
             this.Id = id;
         }
 
-        public CadastroViewModel(string nome, string email, string nomeCrianca, int idadeCrianca)
+        public CadastroViewModel(string nome,int contato, string email, string nomeCrianca, int idadeCrianca)
         {
             Nome = nome;
+            Contato = contato;
             Email = email;
             NomeCrianca = nomeCrianca;
             IdadeCrianca = idadeCrianca;

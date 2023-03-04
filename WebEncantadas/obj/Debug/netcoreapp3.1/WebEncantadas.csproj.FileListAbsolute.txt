@@ -751,7 +751,6 @@ C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\ru\Micros
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\Ingresso\Reserve.cshtml.g.cs
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\WebEncantadas.csproj.AssemblyReference.cache
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
@@ -759,3 +758,9 @@ C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\runtimes\
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Encantadas\NovoSiteEncantadas\WebEncantadas\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\Ingresso\Reserve.cshtml.g.cs
+C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\Cha\Cha.cshtml.g.cs
+C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\Login\Login.cshtml.g.cs
+C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\Quem_Somos\Quem_Somos.cshtml.g.cs
+C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\FotosVideos\FotosVideos.cshtml.g.cs
+C:\Encantadas\NovoSiteEncantadas\WebEncantadas\obj\Debug\netcoreapp3.1\Razor\Views\Duvidas\Duvidas.cshtml.g.cs

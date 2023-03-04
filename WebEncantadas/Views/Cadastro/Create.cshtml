@@ -4,6 +4,20 @@
     ViewData["Title"] = "Create";
 }
 
+@*<script src="~/Content/Scripts/Pagamento/DetalhesCompra.js"></script>*@
+<script src="~/js/cadastro.js" asp-append-version="true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/google-libphonenumber/3.2.16/libphonenumber.js"></script>
+
+@*
+@{
+    // Cria uma instância do objeto PhoneNumberUtil
+    var phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
+
+    // Formata o número de telefone com uma máscara
+    var phoneNumber = "15555555555";
+    var formattedPhoneNumber = phoneUtil.format(phoneUtil.parse(phoneNumber, "BR"), libphonenumber.PhoneNumberFormat.NATIONAL);
+}*@
+
 <h4>Cadastro</h4>
 <hr />
 <div class="row">
@@ -16,9 +30,14 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label asp-for="Email" class="control-label">E-mail</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Contato" class="control-label">Contato</label>
+                <input asp-for="Contato" class="form-control" />
+                <span asp-validation-for="Contato" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NomeCrianca" class="control-label">Nome Criança</label>
@@ -30,13 +49,13 @@
                 <input asp-for="IdadeCrianca" class="form-control" />
                 <span asp-validation-for="IdadeCrianca" class="text-danger"></span>
             </div>
-            <div class="form-group">
+    @*        <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" /> @*value é o nome do botão para cadastrar*@
             </div>
         </form>
     </div>
