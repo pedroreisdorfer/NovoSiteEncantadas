@@ -5,8 +5,15 @@
 }
 
 @*<script src="~/Content/Scripts/Pagamento/DetalhesCompra.js"></script>*@
-<script src="~/js/cadastro.js" asp-append-version="true"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/google-libphonenumber/3.2.16/libphonenumber.js"></script>
+<head>
+    <script src="~/js/cadastro.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/google-libphonenumber/3.2.16/libphonenumber.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.5.1/jquery.inputmask.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/3.5.1/jquery.maskedinput.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</head>
+
 
 @*
 @{
@@ -31,16 +38,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">E-mail</label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" id="email" onblur="validarEmail()" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
               <div class="form-group">
                 <label asp-for="Contato" class="control-label">Contato</label>
-                <input asp-for="Contato" class="form-control" />
+                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()" maxlength="15"/>
                 <span asp-validation-for="Contato" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NomeCrianca" class="control-label">Nome Criança</label>
+                <label asp-for="NomeCrianca" class="control-label">Nome da Criança</label>
                 <input asp-for="NomeCrianca" class="form-control" />
                 <span asp-validation-for="NomeCrianca" class="text-danger"></span>
             </div>
@@ -61,10 +68,53 @@
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+  $(document).ready(function(){
+
+  });
+
+  function mascara (){
+        debugger;
+       $('#telefone').inputmask('(99) 99999-9999');
+  }
+
+    const telefoneInput = document.getElementById('telefone');
+
+    telefoneInput.addEventListener('input', function(event) {
+      let telefone = event.target.value;
+
+      // Remove tudo o que não é dígito
+      telefone = telefone.replace(/\D/g, '');
+
+      // Adiciona parênteses e traço
+      telefone = telefone.replace(/(\d{2})(\d)/, '($1) $2');
+      telefone = telefone.replace(/(\d{5})(\d)/, '$1-$2');
+
+      // Atualiza o valor do input
+      event.target.value = telefone;
+    });
+
+    $(document).ready(function () {
+        $('.phone-mask').mask('(00) 00000-0000');
+    });
+
+    function validarEmail() {
+      var email = document.getElementById("email").value;
+      var regex = /^[^\s]+[^\s]+\.[^\s]+$/;
+      if (!regex.test(email)) {
+        alert("Por favor, digite um endereço de e-mail válido.");
+        return false;
+      }
+      return true;
+    }
+
+</script>
+
