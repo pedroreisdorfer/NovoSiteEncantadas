@@ -40,15 +40,15 @@
 <div class="salaoMesas">
 
     <div class="divisao_1" >
-          <div id="mesa_circular">
+        <div id="mesa_circular">
             @for (int i = 1; i <= 8; i++){
-                    <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="1">@i</button>
+               <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="1">@i</button>
             }
         </div>
 
         <div id="mesa_circular2">
         @for (int i = 1; i <= 8; i++){
-                <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
+            <button id="cadeira-@i" class="assento-@i cadeira" onclick="cadeiraSelecionada(this)" data-num-mesa="2">@i</button>
         }
         </div>
     </div>
