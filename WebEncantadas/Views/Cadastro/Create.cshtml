@@ -16,6 +16,10 @@
     .botaoCadastrar:disabled{
         background-color: #7f7d7b;
     }
+
+    .divCasastro{
+        margin-top: 1rem;
+    }
 </style>
 
 @*<script src="~/Content/Scripts/Pagamento/DetalhesCompra.js"></script>*@
@@ -52,40 +56,40 @@
             </div>
              <div class="form-group">
                 <label asp-for="CPF" class="control-label">CPF</label>
-                <input asp-for="CPF" class="form-control" type="tel"/>
+                <input asp-for="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>
                 <span asp-validation-for="CPF" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">E-mail</label>
-                <input asp-for="Email" class="form-control" id="email" onblur="validarEmail(); checkInputs();" />
+                <input asp-for="Email" class="form-control" id="email" onblur="validarEmail();" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ConfirmacaoEmail" class="control-label">Confirmar e-mail</label>
-                <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail(); checkInputs();"/>
+                <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>
                 <span asp-validation-for="ConfirmacaoEmail" class="text-danger"></span>
             </div>
               <div class="form-group">
                 <label asp-for="Contato" class="control-label">Contato</label>
-                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()" maxlength="15" onblur="checkInputs();"/>
+                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()" maxlength="15" />
                 <span asp-validation-for="Contato" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ContatoEmergencial" class="control-label">Contato emergencial</label>
-                <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()"  maxlength="15" onblur="checkInputs();"/>
+                <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()"  maxlength="15"/>
                 <span asp-validation-for="ContatoEmergencial" class="text-danger"></span>
             </div>
             <div>
                 <label>Quantas crianças você irá levar?</label> @*colocar validação que não pode ser mais que quatro crianças*@
                 <input id="numeroDeCriancas"  name="numeroDeCriancas"/>
-                <button onclick="adicionarCriancas()">Adicionar</button>
+                <button onclick="adicionarCriancas(); ">Adicionar</button>
             </div>
           <div id="inputsCad">
 
           </div>
             
-            <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary botaoCadastrar" id="cadastrar" disabled/> @*value é o nome do botão para cadastrar*@
+            <div class="form-group divCasastro"  >
+                <input type="submit" value="Cadastrar" class="btn btn-primary botaoCadastrar" id="cadastrar"/> @*value é o nome do botão para cadastrar*@
             </div>
         </form>
     </div>
@@ -102,31 +106,52 @@
 <script>
     var numCriancas = $('#numeroDeCriancas').value;
 
-  $(document).ready(function(){
+      $(document).ready(function(){
 
-  });
+      });
 
-  function mascara (){
-        debugger;
-       $('#telefone').inputmask('(99) 99999-9999');
-        $('#telefoneEmergencial').inputmask('(99) 99999-9999');
-  }
+      function mascara (){
+           $('#telefone').inputmask('(99) 99999-9999');
+           $('#telefoneEmergencial').inputmask('(99) 99999-9999');
+      }
 
     const telefoneInput = document.getElementById('telefone');
 
     telefoneInput.addEventListener('input', function(event) {
       let telefone = event.target.value;
-
       // Remove tudo o que não é dígito
       telefone = telefone.replace(/\D/g, '');
-
       // Adiciona parênteses e traço
       telefone = telefone.replace(/(\d{2})(\d)/, '($1) $2');
       telefone = telefone.replace(/(\d{5})(\d)/, '$1-$2');
-
       // Atualiza o valor do input
       event.target.value = telefone;
     });
+
+        const cpfInput = document.getElementById('cpfResponsavel');
+
+        cpfInput.addEventListener('input', function(event) {
+          let cpf = event.target.value;
+          // Remove tudo o que não é dígito
+          cpf = cpf.replace(/\D/g, '');
+          // Adiciona pontos e traço
+          cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+          cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+          cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+          // Atualiza o valor do input
+          event.target.value = cpf;
+        });
+
+    function validaCpf() {
+        var valorCPF = $('#cpfResponsavel').val().length;
+        if(valorCPF != 14){
+                $('#cpfResponsavel').addClass('input-invalido');
+        }
+        else{
+                $('#cpfResponsavel').removeClass('input-invalido');
+        }
+        
+    }
 
         const telefoneEmergencialInput = document.getElementById('telefoneEmergencial');
 
@@ -159,7 +184,6 @@
     }
 
     function validaConfirmacaoEmail(){
-        debugger;
         var email = document.getElementById("email").value;
         var confirmacaoEmail = document.getElementById("Confirma_email").value;
       
@@ -174,110 +198,115 @@
     //inputsDiv .id = "inputs";
 
     // criar validação para que button de cadastrar só fique verde para cadastrar quando todos os dados forem preenchidos corretamente
-    
+          //function habilitarCadastro() {
+          //      $('#cadastrar').prop('disabled', false);
+          //}
 
   function adicionarCriancas() {
-  var numCriancas = document.getElementById("numeroDeCriancas").value;
-  var inputsCad = document.getElementById("inputsCad");
+
+      //habilitarCadastro();
+      var numCriancas = document.getElementById("numeroDeCriancas").value;
+      var inputsCad = document.getElementById("inputsCad");
 
   // Limpa quaisquer inputs anteriores
-  inputsCad.innerHTML = "";
+      inputsCad.innerHTML = "";
 
-  // Cria novos inputs
-  for (var i = 1; i <= numCriancas; i++) {
-    var label = document.createElement("label");
-    label.innerHTML = "Nome da criança " + i + ": ";
+      // Cria novos inputs
+      for (var i = 1; i <= numCriancas; i++) {
+        var label = document.createElement("label");
+        label.innerHTML = "Nome da criança " + i + ": ";
 
-    var input = document.createElement("input");
-    input.type = "text";
-    input.name = "crianca" + i;
-    input.setAttribute('asp-for', 'NomeCrianca_'+i);
-    input.onblur = "checkInputs()";
-    var br = document.createElement("br");
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "crianca" + i;
+        input.setAttribute('asp-for', 'NomeCrianca_'+i);
+        var br = document.createElement("br");
 
-    inputsCad.appendChild(label);
-    inputsCad.appendChild(input);
-    inputsCad.appendChild(br);
+        inputsCad.appendChild(label);
+        inputsCad.appendChild(input);
+        inputsCad.appendChild(br);
 
-    //___________________________________________________
+        //___________________________________________________
 
-    var label2 = document.createElement("label");
-    label2.innerHTML = "Idade da criança " + i + ": ";
+        var label2 = document.createElement("label");
+        label2.innerHTML = "Idade da criança " + i + ": ";
 
-    var input2 = document.createElement("input");
-    input2.type = "tel";
-    input2.name = "crianca" + i;
-    input2.setAttribute('asp-for', 'IdadeCrianca_'+i);
-    input2.onblur = "checkInputs()";
+        var input2 = document.createElement("input");
+        input2.type = "tel";
+        input2.name = "crianca" + i;
+        input2.setAttribute('asp-for', 'IdadeCrianca_'+i);
 
-    var br = document.createElement("br");
 
-    inputsCad.appendChild(label2);
-    inputsCad.appendChild(input2);
-    inputsCad.appendChild(br);
+        var br = document.createElement("br");
 
-    //___________________________________________________
-    var label3 = document.createElement("label");
-    label3.innerHTML = "Data de nascimento " + i + ": ";
+        inputsCad.appendChild(label2);
+        inputsCad.appendChild(input2);
+        inputsCad.appendChild(br);
 
-    var input3 = document.createElement("input");
-    input3.type = "tel"; // ver se tipo tem que ser tel mesmo
-    input3.name = "crianca" + i;
-    input3.setAttribute('asp-for', 'DataDeNascimento_'+i);
-    input3.onblur = "checkInputs()";
+        //___________________________________________________
+        var label3 = document.createElement("label");
+        label3.innerHTML = "Data de nascimento " + i + ": ";
 
-    var br = document.createElement("br");
+        var input3 = document.createElement("input");
+        input3.type = "tel"; // ver se tipo tem que ser tel mesmo
+        input3.name = "crianca" + i;
+        input3.setAttribute('asp-for', 'DataDeNascimento_'+i);
 
-    inputsCad.appendChild(label3);
-    inputsCad.appendChild(input3);
-    inputsCad.appendChild(br);
 
-    //___________________________________________________
-     var label4 = document.createElement("label");
-    label4.innerHTML = "Restrição alimentar " + i + ": ";
+        var br = document.createElement("br");
 
-    var input4 = document.createElement("input");
-    input4.type = "text"; // ver se tipo tem que ser tel mesmo
-    input4.name = "crianca" + i;
-    input4.setAttribute('asp-for', 'Restrição alimentar'+i);
-    input4.onblur = "checkInputs()";
+        inputsCad.appendChild(label3);
+        inputsCad.appendChild(input3);
+        inputsCad.appendChild(br);
 
-    var br = document.createElement("br");
+        //___________________________________________________
+         var label4 = document.createElement("label");
+        label4.innerHTML = "Restrição alimentar " + i + ": ";
 
-    inputsCad.appendChild(label4);
-    inputsCad.appendChild(input4);
-    inputsCad.appendChild(br);
+        var input4 = document.createElement("input");
+        input4.type = "text"; // ver se tipo tem que ser tel mesmo
+        input4.name = "crianca" + i;
+        input4.setAttribute('asp-for', 'Restrição alimentar'+i);
+        input4.className = "restricao-alimentar";
 
-  }
+        var br = document.createElement("br");
 
-  //function habilitarCadastro(){
-  //     var email = document.getElementById("email").value;
-  //    if(email != ''){
-  //        $('#cadastrar').prop('disabled', false);
-  //    }
-  //}
-}
+        inputsCad.appendChild(label4);
+        inputsCad.appendChild(input4);
+        inputsCad.appendChild(br);
 
-    //const inputs = document.querySelectorAll('input');
-    //const button = document.querySelector('button');
+      }
+    }
 
-    //function checkInputs() {
-    //  let allInputsFilled = true;
+    //var seTodosPreenchidos = false;
 
-    //  for (let i = 0; i < inputs.length; i++) {
-    //    if (!inputs[i].value || inputs[i].classList.contains('red-border')) {
-    //      allInputsFilled = false;
-    //      break;
-    //    }
-    //  }
-
-    //  button.disabled = !allInputsFilled;
+    //function verificarInputs() {
+    //  //var inputs = $('input[type="text"]').not('.restricao-alimentar');
+    //  var inputs = document.querySelectorAll('input');
+    //      inputs.each(function() {
+    //        if ($(this).val() != '') {
+    //          todosPreenchidos = true;
+    //          return todosPreenchidos; 
+    //        }
+    //        else{
+    //            return todosPreenchidos;
+    //        }
+    //      });
+    //  return todosPreenchidos;
     //}
 
-    //// Adicione um listener de evento para cada input na página
-    //for (let i = 0; i < inputs.length; i++) {
-    //  inputs[i].addEventListener('input', checkInputs);
+    //function verificarCadastro() {
+    //    if (seTodosPreenchidos == true) {
+    //        $('#cadastrar').prop('disabled', false);
+    //      } 
+    //      else {
+    //        $('#cadastrar').prop('disabled', true);
+    //      }
     //}
+
+    //$('input[type="text"]').on('change', function() {
+    //    verificarCadastro();
+    //});
 
 
 
