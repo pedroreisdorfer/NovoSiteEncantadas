@@ -10,7 +10,8 @@
     }
 
     .botaoCadastrar{
-        background-color: green;
+        background-color: #116795
+        ;
     }
 
     .botaoCadastrar:disabled{
@@ -19,6 +20,80 @@
 
     .divCasastro{
         margin-top: 1rem;
+    }
+
+    .divisoesCadastro{
+        display:flex;
+        flex-direction:row;
+            justify-content: center;
+    }
+
+    .registers{
+        border: 1px solid black;
+       height: auto;
+       border-radius: 5px;
+       padding: 2rem;
+       width: 35rem;
+    }
+
+    .ladoEsquerdoDoCadastro{
+        margin-right: 1rem;
+    }
+
+    .row{
+        margin-left: 0px;
+    }
+
+    #numeroDeCriancas{
+        border-radius: 5px;
+        border: 1px solid black;
+        width: 5rem;
+    }
+
+    .botaoAdicionar{
+        border-radius: 5px;
+        font-size: .8rem;
+        background-color: green;
+        color: white;
+        border: none;
+    }
+
+     body {
+        background-image: url('/fotoTelaCadastro.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+       
+    }
+
+    .tituloCadastro{
+        color: white;
+    }
+
+    body::before{
+         content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/fotoTelaCadastro.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.3; /* altere o valor de opacidade conforme necessário */
+        z-index: -1; /* Coloque o pseudo-elemento atrás de todos os outros elementos */
+    }
+
+    label{
+        color: white;
+    }
+
+    #inputsCad{
+        display: none;
+    }
+
+    .teste1, teste2{
+        display: none;
     }
 </style>
 
@@ -32,44 +107,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 
-
-@*
-@{
-    // Cria uma instância do objeto PhoneNumberUtil
-    var phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
-
-    // Formata o número de telefone com uma máscara
-    var phoneNumber = "15555555555";
-    var formattedPhoneNumber = phoneUtil.format(phoneUtil.parse(phoneNumber, "BR"), libphonenumber.PhoneNumberFormat.NATIONAL);
-}*@
-
-<h4>Cadastro</h4>
+<h4 class="tituloCadastro">Cadastro</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="registers">
+    <div class="">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NomeResponsavel" class="control-label">Nome do Responsável</label>
-                <input asp-for="NomeResponsavel" class="form-control" />
-                <span asp-validation-for="NomeResponsavel" class="text-danger"></span>
+
+            <div class="form-group divisoesCadastro">
+                <div class="form-group ladoEsquerdoDoCadastro">
+                     <label asp-for="NomeResponsavel" class="control-label">Nome do Responsável</label>
+                    <input asp-for="NomeResponsavel" class="form-control" />
+                    <span asp-validation-for="NomeResponsavel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CPF" class="control-label">CPF</label>
+                    <input asp-for="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
             </div>
-             <div class="form-group">
-                <label asp-for="CPF" class="control-label">CPF</label>
-                <input asp-for="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>
-                <span asp-validation-for="CPF" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label">E-mail</label>
-                <input asp-for="Email" class="form-control" id="email" onblur="validarEmail();" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmacaoEmail" class="control-label">Confirmar e-mail</label>
-                <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>
-                <span asp-validation-for="ConfirmacaoEmail" class="text-danger"></span>
-            </div>
-              <div class="form-group">
+             <div class="form-group divisoesCadastro">
+                <div class="form-group ladoEsquerdoDoCadastro">
+                    <label asp-for="Email" class="control-label">E-mail</label>
+                    <input asp-for="Email" class="form-control" id="email" onblur="validarEmail();" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmacaoEmail" class="control-label">Confirmar e-mail</label>
+                    <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>
+                    <span asp-validation-for="ConfirmacaoEmail" class="text-danger"></span>
+                </div>
+             </div>
+
+
+          <div  class="form-group divisoesCadastro">
+                <div class="form-group ladoEsquerdoDoCadastro">
                 <label asp-for="Contato" class="control-label">Contato</label>
                 <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()" maxlength="15" />
                 <span asp-validation-for="Contato" class="text-danger"></span>
@@ -79,12 +151,32 @@
                 <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()"  maxlength="15"/>
                 <span asp-validation-for="ContatoEmergencial" class="text-danger"></span>
             </div>
+          </div>
+
             <div>
                 <label>Quantas crianças você irá levar?</label> @*colocar validação que não pode ser mais que quatro crianças*@
                 <input id="numeroDeCriancas"  name="numeroDeCriancas"/>
-                <button onclick="adicionarCriancas(); ">Adicionar</button>
+                <button onclick="adicionarCriancas();" class="botaoAdicionar">Adicionar</button>
             </div>
+
           <div id="inputsCad">
+              <div class="teste1">
+                  <div>
+                      <button>botão 1</button>
+                  </div>
+                  <div>
+                      <button>botão 2</button>
+                  </div>
+              </div>
+             
+              <div class="teste2">
+                <div>
+                    <button>botão 3</button>
+                </div>
+                <div>
+                    <button>botão 4</button>
+                </div>
+              </div>
 
           </div>
             
@@ -118,14 +210,14 @@
     const telefoneInput = document.getElementById('telefone');
 
     telefoneInput.addEventListener('input', function(event) {
-      let telefone = event.target.value;
-      // Remove tudo o que não é dígito
-      telefone = telefone.replace(/\D/g, '');
-      // Adiciona parênteses e traço
-      telefone = telefone.replace(/(\d{2})(\d)/, '($1) $2');
-      telefone = telefone.replace(/(\d{5})(\d)/, '$1-$2');
-      // Atualiza o valor do input
-      event.target.value = telefone;
+          let telefone = event.target.value;
+          // Remove tudo o que não é dígito
+          telefone = telefone.replace(/\D/g, '');
+          // Adiciona parênteses e traço
+          telefone = telefone.replace(/(\d{2})(\d)/, '($1) $2');
+          telefone = telefone.replace(/(\d{5})(\d)/, '$1-$2');
+          // Atualiza o valor do input
+          event.target.value = telefone;
     });
 
         const cpfInput = document.getElementById('cpfResponsavel');
@@ -149,8 +241,7 @@
         }
         else{
                 $('#cpfResponsavel').removeClass('input-invalido');
-        }
-        
+        }      
     }
 
         const telefoneEmergencialInput = document.getElementById('telefoneEmergencial');
@@ -194,121 +285,131 @@
         }
     }
 
-    //var inputsDiv  = document.createElement("div");
-    //inputsDiv .id = "inputs";
-
-    // criar validação para que button de cadastrar só fique verde para cadastrar quando todos os dados forem preenchidos corretamente
-          //function habilitarCadastro() {
-          //      $('#cadastrar').prop('disabled', false);
-          //}
-
   function adicionarCriancas() {
-
-      //habilitarCadastro();
-      var numCriancas = document.getElementById("numeroDeCriancas").value;
-      var inputsCad = document.getElementById("inputsCad");
-
-  // Limpa quaisquer inputs anteriores
-      inputsCad.innerHTML = "";
-
-      // Cria novos inputs
-      for (var i = 1; i <= numCriancas; i++) {
-        var label = document.createElement("label");
-        label.innerHTML = "Nome da criança " + i + ": ";
-
-        var input = document.createElement("input");
-        input.type = "text";
-        input.name = "crianca" + i;
-        input.setAttribute('asp-for', 'NomeCrianca_'+i);
-        var br = document.createElement("br");
-
-        inputsCad.appendChild(label);
-        inputsCad.appendChild(input);
-        inputsCad.appendChild(br);
-
-        //___________________________________________________
-
-        var label2 = document.createElement("label");
-        label2.innerHTML = "Idade da criança " + i + ": ";
-
-        var input2 = document.createElement("input");
-        input2.type = "tel";
-        input2.name = "crianca" + i;
-        input2.setAttribute('asp-for', 'IdadeCrianca_'+i);
-
-
-        var br = document.createElement("br");
-
-        inputsCad.appendChild(label2);
-        inputsCad.appendChild(input2);
-        inputsCad.appendChild(br);
-
-        //___________________________________________________
-        var label3 = document.createElement("label");
-        label3.innerHTML = "Data de nascimento " + i + ": ";
-
-        var input3 = document.createElement("input");
-        input3.type = "tel"; // ver se tipo tem que ser tel mesmo
-        input3.name = "crianca" + i;
-        input3.setAttribute('asp-for', 'DataDeNascimento_'+i);
-
-
-        var br = document.createElement("br");
-
-        inputsCad.appendChild(label3);
-        inputsCad.appendChild(input3);
-        inputsCad.appendChild(br);
-
-        //___________________________________________________
-         var label4 = document.createElement("label");
-        label4.innerHTML = "Restrição alimentar " + i + ": ";
-
-        var input4 = document.createElement("input");
-        input4.type = "text"; // ver se tipo tem que ser tel mesmo
-        input4.name = "crianca" + i;
-        input4.setAttribute('asp-for', 'Restrição alimentar'+i);
-        input4.className = "restricao-alimentar";
-
-        var br = document.createElement("br");
-
-        inputsCad.appendChild(label4);
-        inputsCad.appendChild(input4);
-        inputsCad.appendChild(br);
+      var numeroCriancas = $('#numeroDeCriancas').val();
+      if(numeroCriancas == "1"){
+           document.getElementById('inputsCad').style.display = 'flex';
+           document.getElementsByClassName('teste1').style.display = 'flex';
 
       }
-    }
+      else{
+          document.getElementById('inputsCad').style.display = 'flex';
+           document.getElementsByClassName('teste1').style.display = 'flex';
+           document.getElementsByClassName('teste2').style.display = 'flex';
+      }
+  }
 
-    //var seTodosPreenchidos = false;
+  //    //habilitarCadastro();
+  //    var numCriancas = document.getElementById("numeroDeCriancas").value;
+  //    var inputsCad = document.getElementById("inputsCad");
+  //    var div1 = document.createElement("div");
+  //      var div2 = document.createElement("div");
+  //      var div3 = document.createElement("div");
+  //      var div4 = document.createElement("div");
+  //// Limpa quaisquer inputs anteriores
+  //    inputsCad.innerHTML = "";
 
-    //function verificarInputs() {
-    //  //var inputs = $('input[type="text"]').not('.restricao-alimentar');
-    //  var inputs = document.querySelectorAll('input');
-    //      inputs.each(function() {
-    //        if ($(this).val() != '') {
-    //          todosPreenchidos = true;
-    //          return todosPreenchidos; 
-    //        }
-    //        else{
-    //            return todosPreenchidos;
-    //        }
-    //      });
-    //  return todosPreenchidos;
-    //}
+  //    // Cria novos inputs
+  //    for (var i = 1; i <= numCriancas; i++) {
 
-    //function verificarCadastro() {
-    //    if (seTodosPreenchidos == true) {
-    //        $('#cadastrar').prop('disabled', false);
-    //      } 
-    //      else {
-    //        $('#cadastrar').prop('disabled', true);
-    //      }
-    //}
+  //      var div1 = document.createElement("div");
+  //      div1.className = "divisoesCadastroCrianas";
 
-    //$('input[type="text"]').on('change', function() {
-    //    verificarCadastro();
-    //});
+  //      var label1 = document.createElement("label");
+  //      label1.innerHTML = "Nome da criança " + i + ": ";
+
+  //      var input1 = document.createElement("input");
+  //      input1.type = "text";
+  //      input1.name = "crianca" + i;
+  //      input1.setAttribute('asp-for', 'NomeCrianca_'+i);
+  //      var br = document.createElement("br");
+
+  //      inputsCad.appendChild(label1);
+  //      inputsCad.appendChild(input1);
+  //      inputsCad.appendChild(br);
+
+  //      //___________________________________________________
+
+  //      var label2 = document.createElement("label");
+  //      label2.innerHTML = "Idade da criança " + i + ": ";
+
+  //      var input2 = document.createElement("input");
+  //      input2.type = "tel";
+  //      input2.name = "crianca" + i;
+  //      input2.setAttribute('asp-for', 'IdadeCrianca_'+i);
 
 
+  //      var br = document.createElement("br");
+
+  //      inputsCad.appendChild(label2);
+  //      inputsCad.appendChild(input2);
+  //      inputsCad.appendChild(br);
+
+  //      //___________________________________________________
+  //      var label3 = document.createElement("label");
+  //      label3.innerHTML = "Data de nascimento " + i + ": ";
+
+  //      var input3 = document.createElement("input");
+  //      input3.type = "tel"; // ver se tipo tem que ser tel mesmo
+  //      input3.name = "crianca" + i;
+  //      input3.setAttribute('asp-for', 'DataDeNascimento_'+i);
+
+
+  //      var br = document.createElement("br");
+
+  //      inputsCad.appendChild(label3);
+  //      inputsCad.appendChild(input3);
+  //      inputsCad.appendChild(br);
+
+  //      //___________________________________________________
+  //       var label4 = document.createElement("label");
+
+  //       label4.innerHTML = "Restrição alimentar " + i + ": ";
+
+  //      var input4 = document.createElement("input");
+  //      input4.type = "text"; // ver se tipo tem que ser tel mesmo
+  //      input4.name = "crianca" + i;
+  //      input4.setAttribute('asp-for', 'Restrição alimentar'+i);
+  //      input4.className = "restricao-alimentar";
+
+  //      var br = document.createElement("br");
+
+  //      inputsCad.appendChild(label4);
+  //      inputsCad.appendChild(input4);
+  //      inputsCad.appendChild(br);
+
+
+  //      div1.appendChild(label1);
+  //      div1.appendChild(input1);
+
+  //      div2.appendChild(label2);
+  //      div2.appendChild(input2);
+
+  //      div3.appendChild(label3);
+  //      div3.appendChild(input3);
+
+  //      div4.appendChild(label4);
+  //      div4.appendChild(input4);
+
+  //      // Cria as divs auxiliares para agrupar as divs de cada par
+  //      var divAuxiliar1 = document.createElement("div");
+  //      divAuxiliar1.appendChild(div1);
+  //      divAuxiliar1.appendChild(div2);
+  //      divAuxiliar1.style.display = "flex";
+  //      divAuxiliar1.style.flexDirection = "row";
+
+  //      var divAuxiliar2 = document.createElement("div");
+  //      divAuxiliar2.appendChild(div3);
+  //      divAuxiliar2.appendChild(div4);
+  //      divAuxiliar2.style.display = "flex";
+  //      divAuxiliar2.style.flexDirection = "row";
+
+  //      // Adiciona as divs auxiliares ao container principal
+  //      inputsCad.appendChild(divAuxiliar1);
+  //      inputsCad.appendChild(divAuxiliar2);
+
+  //    }
+    
 
 </script>
 
