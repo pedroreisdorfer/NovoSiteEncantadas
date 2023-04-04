@@ -90,11 +90,19 @@
 
     #inputsCad{
         display: none;
+        flex-direction: column;
     }
 
-    .teste1, teste2{
-        display: none;
-    }
+
+        .parte1_2_chield, .parte3_4_chield{
+            display: flex;
+            flex-direction:row;
+        }
+
+        #chield1, #chield2, #chiel3, #chield4{
+            display: none;
+            flex-direction: column;
+        }
 </style>
 
 @*<script src="~/Content/Scripts/Pagamento/DetalhesCompra.js"></script>*@
@@ -160,24 +168,97 @@
             </div>
 
           <div id="inputsCad">
-              <div class="teste1">
-                  <div>
-                      <button>botão 1</button>
+              <div id="chield1" class="crianca_1">
+                  <div class="parte1_2_chield">
+                      <div>
+                          <label>Nome da Criança: </label>
+                          <input name="crianca1" type="text" asp-for="NomeCrianca_1 " />
+                      </div>
+                      <div>
+                          <label>Idade da criança</label>
+                          <input name="crianca1" type="tel" asp-for="IdadeCrianca_1"/>
+                      </div> 
                   </div>
-                  <div>
-                      <button>botão 2</button>
+                  <div class="parte3_4_chield">
+                      <div>
+                          <label>Data de Nascimento:</label>
+                          <input name="crianca1" type="date" asp-for="DataDeNascimento_1 " />
+                      </div>
+                      <div>
+                          <label>Restrição Alimentar:</label>
+                          <input name="crianca1" type="text" asp-for="RestricaoAlimentar_1 " />
+                      </div> 
                   </div>
-              </div>
-             
-              <div class="teste2">
-                <div>
-                    <button>botão 3</button>
-                </div>
-                <div>
-                    <button>botão 4</button>
-                </div>
               </div>
 
+              <div id="chield2" class="crianca_2">
+                  <div class="parte1_2_chield">
+                      <div >
+                          <label>Nome da Criança: </label>
+                          <input name="crianca2" type="text" asp-for="NomeCrianca_2 " />
+                      </div>
+                      <div>
+                          <label>Idade da criança</label>
+                          <input name="crianca2" type="tel" asp-for="IdadeCrianca_2"/>
+                      </div> 
+                  </div>
+                  <div class="parte3_4_chield">
+                      <div>
+                          <label>Data de Nascimento:</label>
+                          <input name="crianca2" type="date" asp-for="DataDeNascimento_2" />
+                      </div>
+                      <div>
+                          <label>Restrição Alimentar:</label>
+                          <input name="crianca2" type="text" asp-for="RestricaoAlimentar_2 " />
+                      </div> 
+                  </div>
+              </div>
+
+              <div id="chield3" class="crianca_3">
+                  <div class="parte1_2_chield">
+                      <div >
+                          <label>Nome da Criança: </label>
+                          <input name="crianca3" type="text" asp-for="NomeCrianca_3 " />
+                      </div>
+                      <div>
+                          <label>Idade da criança</label>
+                          <input name="crianca3" type="tel" asp-for="IdadeCrianca_3"/>
+                      </div> 
+                  </div>
+                  <div class="parte3_4_chield">
+                      <div>
+                          <label>Data de Nascimento:</label>
+                          <input name="crianca3" type="date" asp-for="DataDeNascimento_3 " />
+                      </div>
+                      <div>
+                          <label>Restrição Alimentar:</label>
+                          <input name="crianca3" type="text" asp-for="RestricaoAlimentar_3 " />
+                      </div> 
+                  </div>
+              </div>
+
+              <div id="chield4" class="crianca_4">
+                  <div class="parte1_2_chield">
+                      <div >
+                          <label>Nome da Criança: </label>
+                          <input name="crianca4" type="text" asp-for="NomeCrianca_4 " />
+                      </div>
+                      <div>
+                          <label>Idade da criança</label>
+                          <input name="crianca4" type="tel" asp-for="IdadeCrianca_4"/>
+                      </div> 
+                  </div>
+                  <div class="parte3_4_chield">
+                      <div>
+                          <label>Data de Nascimento:</label>
+                          <input name="crianca4" type="date" asp-for="DataDeNascimento_4" />
+                      </div>
+                      <div>
+                          <label>Restrição Alimentar:</label>
+                          <input name="crianca4" type="text" asp-for="RestricaoAlimentar_4" />
+                      </div> 
+                  </div>
+              </div>
           </div>
             
             <div class="form-group divCasastro"  >
@@ -289,13 +370,33 @@
       var numeroCriancas = $('#numeroDeCriancas').val();
       if(numeroCriancas == "1"){
            document.getElementById('inputsCad').style.display = 'flex';
-           document.getElementsByClassName('teste1').style.display = 'flex';
-
+           document.getElementById('chield1').style.display = 'flex';
+           document.getElementsByClassName('parte1_2_chield').style.display = 'flex';
+           document.getElementsByClassName('parte3_4_chield').style.display = 'flex';
       }
-      else{
+      else if(numeroCriancas == "2"){
           document.getElementById('inputsCad').style.display = 'flex';
-           document.getElementsByClassName('teste1').style.display = 'flex';
-           document.getElementsByClassName('teste2').style.display = 'flex';
+          document.getElementById('chield1').style.display = 'flex';
+          document.getElementById('chield2').style.display = 'flex';
+          document.getElementsByClassName('parte1_2_chield').style.display = 'flex';
+           document.getElementsByClassName('parte3_4_chield').style.display = 'flex';
+      }
+      else if(numeroCriancas == "3"){
+          document.getElementById('inputsCad').style.display = 'flex';
+          document.getElementById('chield1').style.display = 'flex';
+          document.getElementById('chield2').style.display = 'flex';
+          document.getElementById('chield3').style.display = 'flex';
+          document.getElementsByClassName('parte1_2_chield').style.display = 'flex';
+           document.getElementsByClassName('parte3_4_chield').style.display = 'flex';
+      }
+      else if(numeroCriancas == "4"){
+           document.getElementById('inputsCad').style.display = 'flex';
+           document.getElementById('chield1').style.display = 'flex';
+           document.getElementById('chield2').style.display = 'flex';
+           document.getElementById('chield3').style.display = 'flex';
+           document.getElementById('chield4').style.display = 'flex';
+           document.getElementsByClassName('parte1_2_chield').style.display = 'flex';
+           document.getElementsByClassName('parte3_4_chield').style.display = 'flex';
       }
   }
 
