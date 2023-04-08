@@ -33,7 +33,8 @@
        height: auto;
        border-radius: 5px;
        padding: 2rem;
-       width: 35rem;
+       width: 31rem;
+       margin:auto;
     }
 
     .ladoEsquerdoDoCadastro{
@@ -69,20 +70,6 @@
         color: white;
     }
 
-    body::before{
-         content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('/fotoTelaCadastro.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        opacity: 0.3; /* altere o valor de opacidade conforme necessário */
-        z-index: -1; /* Coloque o pseudo-elemento atrás de todos os outros elementos */
-    }
 
     label{
         color: white;
@@ -97,12 +84,38 @@
         .parte1_2_chield, .parte3_4_chield{
             display: flex;
             flex-direction:row;
+            margin-bottom: 1rem;
+           
         }
 
-        #chield1, #chield2, #chiel3, #chield4{
+        #chield1, #chield2, #chield3, #chield4{
             display: none;
             flex-direction: column;
         }
+
+        .dataNascimentoInput{
+            width: 13rem;
+        }
+
+        .ladoDireitoInputCrianca{
+            margin-right: 1rem;
+        }
+/*          #fundo {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-image: url('/fotoTelaCadastro.jpg');
+  }
+
+  #fundo img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }*/
 </style>
 
 @*<script src="~/Content/Scripts/Pagamento/DetalhesCompra.js"></script>*@
@@ -115,7 +128,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 
-<h4 class="tituloCadastro">Cadastro</h4>
+<body>
+
+     @* <div id="fundo">
+            <img alt="Descrição da imagem">
+        </div>*@
+
+    <h4 class="tituloCadastro">Cadastro</h4>
 <hr />
 <div class="registers">
     <div class="">
@@ -170,92 +189,92 @@
           <div id="inputsCad">
               <div id="chield1" class="crianca_1">
                   <div class="parte1_2_chield">
-                      <div>
+                      <div class="ladoDireitoInputCrianca">
                           <label>Nome da Criança: </label>
-                          <input name="crianca1" type="text" asp-for="NomeCrianca_1 " />
+                          <input class="form-control inputCadCrianas" name="crianca1" type="text" asp-for="NomeCrianca_1" />
                       </div>
                       <div>
                           <label>Idade da criança</label>
-                          <input name="crianca1" type="tel" asp-for="IdadeCrianca_1"/>
+                          <input class="form-control" name="crianca1" type="tel" asp-for="IdadeCrianca_1"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
-                      <div>
+                      <div class="ladoDireitoInputCrianca">
                           <label>Data de Nascimento:</label>
-                          <input name="crianca1" type="date" asp-for="DataDeNascimento_1 " />
+                          <input class="form-control dataNascimentoInput" name="crianca1" type="date" asp-for="DataDeNascimento_1 " />
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
-                          <input name="crianca1" type="text" asp-for="RestricaoAlimentar_1 " />
+                          <input class="form-control" name="crianca1" type="text" asp-for="RestricaoAlimentar_1 " />
                       </div> 
                   </div>
               </div>
 
               <div id="chield2" class="crianca_2">
                   <div class="parte1_2_chield">
-                      <div >
+                      <div class="ladoDireitoInputCrianca">
                           <label>Nome da Criança: </label>
-                          <input name="crianca2" type="text" asp-for="NomeCrianca_2 " />
+                          <input class="form-control" name="crianca2" type="text" asp-for="NomeCrianca_2 " />
                       </div>
                       <div>
                           <label>Idade da criança</label>
-                          <input name="crianca2" type="tel" asp-for="IdadeCrianca_2"/>
+                          <input class="form-control" name="crianca2" type="tel" asp-for="IdadeCrianca_2"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
-                      <div>
+                      <div class="ladoDireitoInputCrianca">
                           <label>Data de Nascimento:</label>
-                          <input name="crianca2" type="date" asp-for="DataDeNascimento_2" />
+                          <input class="form-control dataNascimentoInput" name="crianca2" type="date" asp-for="DataDeNascimento_2" />
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
-                          <input name="crianca2" type="text" asp-for="RestricaoAlimentar_2 " />
+                          <input class="form-control" name="crianca2" type="text" asp-for="RestricaoAlimentar_2 " />
                       </div> 
                   </div>
               </div>
 
               <div id="chield3" class="crianca_3">
                   <div class="parte1_2_chield">
-                      <div >
+                      <div class="ladoDireitoInputCrianca">
                           <label>Nome da Criança: </label>
-                          <input name="crianca3" type="text" asp-for="NomeCrianca_3 " />
+                          <input class="form-control" name="crianca3" type="text" asp-for="NomeCrianca_3 " />
                       </div>
                       <div>
                           <label>Idade da criança</label>
-                          <input name="crianca3" type="tel" asp-for="IdadeCrianca_3"/>
+                          <input class="form-control" name="crianca3" type="tel" asp-for="IdadeCrianca_3"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
-                      <div>
+                      <div class="ladoDireitoInputCrianca">
                           <label>Data de Nascimento:</label>
-                          <input name="crianca3" type="date" asp-for="DataDeNascimento_3 " />
+                          <input class="form-control dataNascimentoInput" name="crianca3" type="date" asp-for="DataDeNascimento_3 " />
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
-                          <input name="crianca3" type="text" asp-for="RestricaoAlimentar_3 " />
+                          <input class="form-control" name="crianca3" type="text" asp-for="RestricaoAlimentar_3 " />
                       </div> 
                   </div>
               </div>
 
               <div id="chield4" class="crianca_4">
                   <div class="parte1_2_chield">
-                      <div >
+                      <div class="ladoDireitoInputCrianca">
                           <label>Nome da Criança: </label>
-                          <input name="crianca4" type="text" asp-for="NomeCrianca_4 " />
+                          <input class="form-control" name="crianca4" type="text" asp-for="NomeCrianca_4 " />
                       </div>
                       <div>
                           <label>Idade da criança</label>
-                          <input name="crianca4" type="tel" asp-for="IdadeCrianca_4"/>
+                          <input class="form-control" name="crianca4" type="tel" asp-for="IdadeCrianca_4"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
-                      <div>
+                      <div class="ladoDireitoInputCrianca">
                           <label>Data de Nascimento:</label>
-                          <input name="crianca4" type="date" asp-for="DataDeNascimento_4" />
+                          <input class="form-control dataNascimentoInput" name="crianca4" type="date" asp-for="DataDeNascimento_4" />
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
-                          <input name="crianca4" type="text" asp-for="RestricaoAlimentar_4" />
+                          <input class="form-control" name="crianca4" type="text" asp-for="RestricaoAlimentar_4" />
                       </div> 
                   </div>
               </div>
@@ -267,6 +286,7 @@
         </form>
     </div>
 </div>
+</body>
 
 @*<div>
     <a asp-action="Index">Back to List</a>
