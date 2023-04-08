@@ -91,10 +91,14 @@
         #chield1, #chield2, #chield3, #chield4{
             display: none;
             flex-direction: column;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
 
         .dataNascimentoInput{
-            width: 13rem;
+            width: 12rem;
         }
 
         .ladoDireitoInputCrianca{
@@ -193,15 +197,15 @@
                           <label>Nome da Criança: </label>
                           <input class="form-control inputCadCrianas" name="crianca1" type="text" asp-for="NomeCrianca_1" />
                       </div>
-                      <div>
-                          <label>Idade da criança</label>
-                          <input class="form-control" name="crianca1" type="tel" asp-for="IdadeCrianca_1"/>
+                      <div>                     
+                          <label>Data de Nascimento:</label>
+                          <input id="dateBorn1" class="form-control dataNascimentoInput" name="crianca1" type="date" asp-for="DataDeNascimento_1 " onblur="validaNascimento()"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
                       <div class="ladoDireitoInputCrianca">
-                          <label>Data de Nascimento:</label>
-                          <input class="form-control dataNascimentoInput" name="crianca1" type="date" asp-for="DataDeNascimento_1 " />
+                           <label>Idade da criança:</label>
+                          <input class="form-control" name="crianca1" type="tel" asp-for="IdadeCrianca_1"/>
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
@@ -217,14 +221,14 @@
                           <input class="form-control" name="crianca2" type="text" asp-for="NomeCrianca_2 " />
                       </div>
                       <div>
-                          <label>Idade da criança</label>
-                          <input class="form-control" name="crianca2" type="tel" asp-for="IdadeCrianca_2"/>
+                          <label>Data de Nascimento:</label>
+                          <input id="dateBorn2" class="form-control dataNascimentoInput" name="crianca2" type="date" asp-for="DataDeNascimento_2" onblur="validaNascimento()"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
                       <div class="ladoDireitoInputCrianca">
-                          <label>Data de Nascimento:</label>
-                          <input class="form-control dataNascimentoInput" name="crianca2" type="date" asp-for="DataDeNascimento_2" />
+                          <label>Idade da criança:</label>
+                          <input class="form-control" name="crianca2" type="tel" asp-for="IdadeCrianca_2"/>
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
@@ -240,14 +244,15 @@
                           <input class="form-control" name="crianca3" type="text" asp-for="NomeCrianca_3 " />
                       </div>
                       <div>
-                          <label>Idade da criança</label>
-                          <input class="form-control" name="crianca3" type="tel" asp-for="IdadeCrianca_3"/>
+                          <label>Data de Nascimento:</label>
+                          <input id="dateBorn3" class="form-control dataNascimentoInput" name="crianca3" type="date" asp-for="DataDeNascimento_3 " onblur="validaNascimento()"/>
+
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
                       <div class="ladoDireitoInputCrianca">
-                          <label>Data de Nascimento:</label>
-                          <input class="form-control dataNascimentoInput" name="crianca3" type="date" asp-for="DataDeNascimento_3 " />
+                          <label>Idade da criança:</label>
+                          <input class="form-control" name="crianca3" type="tel" asp-for="IdadeCrianca_3"/>
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
@@ -263,14 +268,14 @@
                           <input class="form-control" name="crianca4" type="text" asp-for="NomeCrianca_4 " />
                       </div>
                       <div>
-                          <label>Idade da criança</label>
-                          <input class="form-control" name="crianca4" type="tel" asp-for="IdadeCrianca_4"/>
+                          <label>Data de Nascimento:</label>
+                          <input id="dateBorn4" class="form-control dataNascimentoInput" name="crianca4" type="date" asp-for="DataDeNascimento_4" onblur="validaNascimento()"/>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
                       <div class="ladoDireitoInputCrianca">
-                          <label>Data de Nascimento:</label>
-                          <input class="form-control dataNascimentoInput" name="crianca4" type="date" asp-for="DataDeNascimento_4" />
+                          <label>Idade da criança:</label>
+                          <input class="form-control" name="crianca4" type="tel" asp-for="IdadeCrianca_4"/>
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
@@ -531,6 +536,28 @@
 
   //    }
     
+
+  function validaNascimento(){
+      var dateChield1 = $('#dateborn1');
+      //var dateChield2 = $('#dateborn2').val();
+      //var dateChield3 = $('#dateborn3').val();
+      //var dateChield4 = $('#dateborn4').val();
+      var dateBorn = new Date(document.getElementById("dateBorn1").value); 
+
+      var minDate = new Date("2015-08-31"); // define a data mínima permitida
+      var maxDate = new Date("2019-12-31"); // define a data máxima permitida
+
+      if(dateBorn >= minDate && dateBorn <= maxDate){
+          console.log("Data de nascimento válida");
+          
+      }
+      else{
+          console.log("Data de nascimento inválida");
+          $('#dateborn1').css('border', '2px solid red')
+      }
+      
+
+  }
 
 </script>
 
