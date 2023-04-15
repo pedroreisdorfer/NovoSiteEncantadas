@@ -70,9 +70,13 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-/*.container{
-    margin-left: 1rem;
-}*/
+.linksCabecalho{
+    color: white !important;
+}
+
+.nav-item {
+    color: white !important;
+}
 
 .minhaNavBar {
     background-color: #bd7a46c4 !important;

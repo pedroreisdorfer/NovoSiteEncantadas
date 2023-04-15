@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 </head>
+
+<style>
+    .linkColor{
+        color: white !important;
+    }
+</style>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 minhaNavBar">
@@ -21,30 +27,30 @@
                 @*<img src="@ViewData["QRCodeImage"]" />*@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 linksCabecalho">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ingresso" asp-action="Reserve">Compre seu ingresso</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Ingresso" asp-action="Reserve">Compre seu ingresso</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Quem_Somos" asp-action="Quem_Somos">Quem Somos</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Quem_Somos" asp-action="Quem_Somos">Quem Somos</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cha" asp-action="Cha">Funcionamento do Chá</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Cha" asp-action="Cha">Funcionamento do Chá</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FotosVideos" asp-action="FotosVideos">Fotos e Vídeos</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="FotosVideos" asp-action="FotosVideos">Fotos e Vídeos</a>
                         </li>                     
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cadastro" asp-action="Create">Cadastre-se</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Cadastro" asp-action="Create">Cadastre-se</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Duvidas" asp-action="Duvidas">Dúvidas Frequentes</a>
+                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Duvidas" asp-action="Duvidas">Dúvidas Frequentes</a>
                         </li>
                     </ul>
                 </div>
