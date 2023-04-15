@@ -5,138 +5,22 @@
 }
 
 <style>
-    .input-invalido {
-      border: 1px solid red;
-    }
 
-    .botaoCadastrar{
-        background-color: #116795
-        ;
-    }
-
-    .botaoCadastrar:disabled{
-        background-color: #7f7d7b;
-    }
-
-    .divCasastro{
-        margin-top: 1rem;
-    }
-
-    .divisoesCadastro{
-        display:flex;
-        flex-direction:row;
-            justify-content: center;
-    }
-
-    .registers{
-        border: 1px solid black;
-       height: auto;
-       border-radius: 5px;
-       padding: 2rem;
-       width: 31rem;
-       margin:auto;
-    }
-
-    .ladoEsquerdoDoCadastro{
-        margin-right: 1rem;
-    }
-
-    .row{
-        margin-left: 0px;
-    }
-
-    #numeroDeCriancas{
-        border-radius: 5px;
-        border: 1px solid black;
-        width: 5rem;
-    }
-
-    .botaoAdicionar{
-        border-radius: 5px;
-        font-size: .8rem;
-        background-color: green;
-        color: white;
-        border: none;
-    }
-
-     body {
-        background-image: url('/fotoTelaCadastro.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-       
-    }
-
-    .tituloCadastro{
-        color: white;
-    }
-
-
-    label{
-        color: white;
-    }
-
-    #inputsCad{
-        display: none;
-        flex-direction: column;
-    }
-
-
-        .parte1_2_chield, .parte3_4_chield{
-            display: flex;
-            flex-direction:row;
-            margin-bottom: 1rem;
-           
-        }
-
-        #chield1, #chield2, #chield3, #chield4{
-            display: none;
-            flex-direction: column;
-            border: 1px solid white;
-            border-radius: 5px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .dataNascimentoInput{
-            width: 12rem;
-        }
-
-        .ladoDireitoInputCrianca{
-            margin-right: 1rem;
-        }
-/*          #fundo {
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    background-image: url('/fotoTelaCadastro.jpg');
-  }
-
-  #fundo img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }*/
 </style>
 
-@*<script src="~/Content/Scripts/Pagamento/DetalhesCompra.js"></script>*@
+
 <head>
     <script src="~/js/cadastro.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/google-libphonenumber/3.2.16/libphonenumber.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.5.1/jquery.inputmask.bundle.min.js"></script>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/3.5.1/jquery.maskedinput.min.js"></script>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/style_Create.css" />
 </head>
 
 <body>
-
-     @* <div id="fundo">
-            <img alt="Descrição da imagem">
-        </div>*@
 
     <h4 class="tituloCadastro">Cadastro</h4>
 <hr />
@@ -148,25 +32,25 @@
             <div class="form-group divisoesCadastro">
                 <div class="form-group ladoEsquerdoDoCadastro">
                      <label asp-for="NomeResponsavel" class="control-label">Nome do Responsável</label>
-                    <input asp-for="NomeResponsavel" class="form-control" />
-                    <span asp-validation-for="NomeResponsavel" class="text-danger"></span>
+                    <input asp-for="NomeResponsavel" class="form-control" id="nomeDoResponsavel" onblur="validaNomeResponsavel()"/>                   
+                     <span class="nomeinvalido">Preencha nome e sobrenome!</span>
                 </div>
                 <div class="form-group">
                     <label asp-for="CPF" class="control-label">CPF</label>
-                    <input asp-for="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>
-                    <span asp-validation-for="CPF" class="text-danger"></span>
+                    <input asp-for="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>                 
+                     <span class="cpfinvalido">CPF inválido</span>
                 </div>
             </div>
              <div class="form-group divisoesCadastro">
                 <div class="form-group ladoEsquerdoDoCadastro">
                     <label asp-for="Email" class="control-label">E-mail</label>
-                    <input asp-for="Email" class="form-control" id="email" onblur="validarEmail();" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input asp-for="Email" class="form-control" id="email"  />
+                 
                 </div>
                 <div class="form-group">
                     <label asp-for="ConfirmacaoEmail" class="control-label">Confirmar e-mail</label>
                     <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>
-                    <span asp-validation-for="ConfirmacaoEmail" class="text-danger"></span>
+                   
                 </div>
              </div>
 
@@ -174,18 +58,19 @@
           <div  class="form-group divisoesCadastro">
                 <div class="form-group ladoEsquerdoDoCadastro">
                 <label asp-for="Contato" class="control-label">Contato</label>
-                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()" maxlength="15" />
-                <span asp-validation-for="Contato" class="text-danger"></span>
+                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" onkeypress="mascara()" maxlength="15" onblur="validaContatoCelular()"/>
+                  <span class="contatoInvalido">Número inválido</span>
+
             </div>
             <div class="form-group">
                 <label asp-for="ContatoEmergencial" class="control-label">Contato emergencial</label>
-                <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="telefone" placeholder="(99) 99999-9999" onkeypress="mascara()"  maxlength="15"/>
-                <span asp-validation-for="ContatoEmergencial" class="text-danger"></span>
+                <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="telefone" placeholder="(00) 00000-0000" onkeypress="mascara()"  maxlength="15" onblur="validaContatoCelularEmergencial()"/>
+                <span class="contatoEmergencialInvalido">Número inválido</span>
             </div>
           </div>
 
             <div>
-                <label>Quantas crianças você irá levar?</label> @*colocar validação que não pode ser mais que quatro crianças*@
+                <label>Quantas crianças você irá levar?</label>
                 <input id="numeroDeCriancas"  name="numeroDeCriancas"/>
                 <button onclick="adicionarCriancas();" class="botaoAdicionar">Adicionar</button>
             </div>
@@ -326,60 +211,104 @@
           event.target.value = telefone;
     });
 
-        const cpfInput = document.getElementById('cpfResponsavel');
+    const cpfInput = document.getElementById('cpfResponsavel');
 
-        cpfInput.addEventListener('input', function(event) {
-          let cpf = event.target.value;
-          // Remove tudo o que não é dígito
-          cpf = cpf.replace(/\D/g, '');
-          // Adiciona pontos e traço
-          cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-          cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
-          cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-          // Atualiza o valor do input
-          event.target.value = cpf;
-        });
+    cpfInput.addEventListener('input', function(event) {
+        let cpf = event.target.value;
+        // Remove tudo o que não é dígito
+        cpf = cpf.replace(/\D/g, '');
+        // Adiciona pontos e traço
+        cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+        cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2');
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        // Atualiza o valor do input
+        event.target.value = cpf;
+    });
+
+    function validaNomeResponsavel(){
+        var nomeResponsavel_ = $('#nomeDoResponsavel').val();
+        if(nomeResponsavel_.split(" ").length < 2){
+             $('#nomeDoResponsavel').addClass('input-invalido');
+             $('.nomeinvalido').css('display', 'flex');
+        }
+        else{
+            $('#nomeDoResponsavel').removeClass('input-invalido');
+             $('.nomeinvalido').css('display', 'none');
+        }
+
+    }
 
     function validaCpf() {
         var valorCPF = $('#cpfResponsavel').val().length;
         if(valorCPF != 14){
                 $('#cpfResponsavel').addClass('input-invalido');
+                $('.cpfinvalido').css('display', 'flex');
         }
         else{
                 $('#cpfResponsavel').removeClass('input-invalido');
+                $('.cpfinvalido').css('display', 'none');
         }      
     }
 
-        const telefoneEmergencialInput = document.getElementById('telefoneEmergencial');
+    const telefoneEmergencialInput = document.getElementById('telefoneEmergencial');
 
-        telefoneEmergencialInput.addEventListener('input', function(event) {
-          let telefoneEmergencial = event.target.value;
+    telefoneEmergencialInput.addEventListener('input', function(event) {
+        let telefoneEmergencial = event.target.value;
 
-          // Remove tudo o que não é dígito
-          telefoneEmergencial = telefoneEmergencial.replace(/\D/g, '');
+        // Remove tudo o que não é dígito
+        telefoneEmergencial = telefoneEmergencial.replace(/\D/g, '');
 
-          // Adiciona parênteses e traço
-          telefoneEmergencial = telefoneEmergencial.replace(/(\d{2})(\d)/, '($1) $2');
-          telefoneEmergencial = telefoneEmergencial.replace(/(\d{5})(\d)/, '$1-$2');
+        // Adiciona parênteses e traço
+        telefoneEmergencial = telefoneEmergencial.replace(/(\d{2})(\d)/, '($1) $2');
+        telefoneEmergencial = telefoneEmergencial.replace(/(\d{5})(\d)/, '$1-$2');
 
-          // Atualiza o valor do input
-          event.target.value = telefoneEmergencial;
-        });
-
-    $(document).ready(function () {
-        $('.phone-mask').mask('(00) 00000-0000');
+        // Atualiza o valor do input
+        event.target.value = telefoneEmergencial;
     });
+
+    function validaContatoCelular(){
+        var contatoCelular = $("#telefone").val();
+
+        var dddRegex = /^\((51|53|54|55)\)\s*\d{5}-\d{4}$/;
+      
+        if(!dddRegex.test(contatoCelular) || contatoCelular.length !=15 ){
+            $("#telefone").addClass('input-invalido');
+             $('.contatoInvalido').css('display', 'flex');         
+        }
+        else{
+             $("#telefone").removeClass('input-invalido');
+             $('.contatoInvalido').css('display', 'none');
+        }
+    }
+
+    function validaContatoCelularEmergencial(){
+        var contatoCelularEmergencial = $("#telefoneEmergencial").val();
+
+        var dddRegex = /^\((51|53|54|55)\)\s*\d{5}-\d{4}$/;
+      
+        if(!dddRegex.test(contatoCelularEmergencial) || contatoCelularEmergencial.length !=15){
+            $("#telefoneEmergencial").addClass('input-invalido');
+                $('.contatoEmergencialInvalido').css('display', 'flex');         
+        }
+        else{
+                $("#telefoneEmergencial").removeClass('input-invalido');
+                $('.contatoEmergencialInvalido').css('display', 'none');
+        }
+    }
 
     function validarEmail() {
       var email = document.getElementById("email").value;
       var regex = /^[^\s]+[^\s]+\.[^\s]+$/;
+    
       if (!regex.test(email)) {
         alert("Por favor, digite um endereço de e-mail válido.");
+       document.getElementById("email").value = " ";
         return false;
+
       }
       return true;
     }
-
+  
     function validaConfirmacaoEmail(){
         var email = document.getElementById("email").value;
         var confirmacaoEmail = document.getElementById("Confirma_email").value;
@@ -387,7 +316,7 @@
         if(email != confirmacaoEmail){
           
             $('#Confirma_email').addClass('input-invalido');
-           
+             document.getElementById("email").value = " ";         
         }
     }
 
@@ -425,118 +354,6 @@
       }
   }
 
-  //    //habilitarCadastro();
-  //    var numCriancas = document.getElementById("numeroDeCriancas").value;
-  //    var inputsCad = document.getElementById("inputsCad");
-  //    var div1 = document.createElement("div");
-  //      var div2 = document.createElement("div");
-  //      var div3 = document.createElement("div");
-  //      var div4 = document.createElement("div");
-  //// Limpa quaisquer inputs anteriores
-  //    inputsCad.innerHTML = "";
-
-  //    // Cria novos inputs
-  //    for (var i = 1; i <= numCriancas; i++) {
-
-  //      var div1 = document.createElement("div");
-  //      div1.className = "divisoesCadastroCrianas";
-
-  //      var label1 = document.createElement("label");
-  //      label1.innerHTML = "Nome da criança " + i + ": ";
-
-  //      var input1 = document.createElement("input");
-  //      input1.type = "text";
-  //      input1.name = "crianca" + i;
-  //      input1.setAttribute('asp-for', 'NomeCrianca_'+i);
-  //      var br = document.createElement("br");
-
-  //      inputsCad.appendChild(label1);
-  //      inputsCad.appendChild(input1);
-  //      inputsCad.appendChild(br);
-
-  //      //___________________________________________________
-
-  //      var label2 = document.createElement("label");
-  //      label2.innerHTML = "Idade da criança " + i + ": ";
-
-  //      var input2 = document.createElement("input");
-  //      input2.type = "tel";
-  //      input2.name = "crianca" + i;
-  //      input2.setAttribute('asp-for', 'IdadeCrianca_'+i);
-
-
-  //      var br = document.createElement("br");
-
-  //      inputsCad.appendChild(label2);
-  //      inputsCad.appendChild(input2);
-  //      inputsCad.appendChild(br);
-
-  //      //___________________________________________________
-  //      var label3 = document.createElement("label");
-  //      label3.innerHTML = "Data de nascimento " + i + ": ";
-
-  //      var input3 = document.createElement("input");
-  //      input3.type = "tel"; // ver se tipo tem que ser tel mesmo
-  //      input3.name = "crianca" + i;
-  //      input3.setAttribute('asp-for', 'DataDeNascimento_'+i);
-
-
-  //      var br = document.createElement("br");
-
-  //      inputsCad.appendChild(label3);
-  //      inputsCad.appendChild(input3);
-  //      inputsCad.appendChild(br);
-
-  //      //___________________________________________________
-  //       var label4 = document.createElement("label");
-
-  //       label4.innerHTML = "Restrição alimentar " + i + ": ";
-
-  //      var input4 = document.createElement("input");
-  //      input4.type = "text"; // ver se tipo tem que ser tel mesmo
-  //      input4.name = "crianca" + i;
-  //      input4.setAttribute('asp-for', 'Restrição alimentar'+i);
-  //      input4.className = "restricao-alimentar";
-
-  //      var br = document.createElement("br");
-
-  //      inputsCad.appendChild(label4);
-  //      inputsCad.appendChild(input4);
-  //      inputsCad.appendChild(br);
-
-
-  //      div1.appendChild(label1);
-  //      div1.appendChild(input1);
-
-  //      div2.appendChild(label2);
-  //      div2.appendChild(input2);
-
-  //      div3.appendChild(label3);
-  //      div3.appendChild(input3);
-
-  //      div4.appendChild(label4);
-  //      div4.appendChild(input4);
-
-  //      // Cria as divs auxiliares para agrupar as divs de cada par
-  //      var divAuxiliar1 = document.createElement("div");
-  //      divAuxiliar1.appendChild(div1);
-  //      divAuxiliar1.appendChild(div2);
-  //      divAuxiliar1.style.display = "flex";
-  //      divAuxiliar1.style.flexDirection = "row";
-
-  //      var divAuxiliar2 = document.createElement("div");
-  //      divAuxiliar2.appendChild(div3);
-  //      divAuxiliar2.appendChild(div4);
-  //      divAuxiliar2.style.display = "flex";
-  //      divAuxiliar2.style.flexDirection = "row";
-
-  //      // Adiciona as divs auxiliares ao container principal
-  //      inputsCad.appendChild(divAuxiliar1);
-  //      inputsCad.appendChild(divAuxiliar2);
-
-  //    }
-    
-
   function validaNascimento(){
       var dateChield1 = $('#dateborn1');
       //var dateChield2 = $('#dateborn2').val();
@@ -555,9 +372,8 @@
           console.log("Data de nascimento inválida");
           $('#dateborn1').css('border', '2px solid red')
       }
-      
-
   }
+    
 
 </script>
 
