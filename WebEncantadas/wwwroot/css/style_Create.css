@@ -101,3 +101,8 @@ label {
 .ladoDireitoInputCrianca {
     margin-right: 1rem;
 }
+
+.data1, .data2, .data3, .data4 {
+    display: none;
+    color: white;
+}
