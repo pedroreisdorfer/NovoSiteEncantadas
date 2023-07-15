@@ -11,8 +11,7 @@
 
 <head>
     <script src="~/js/cadastro.js" asp-append-version="true"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/google-libphonenumber/3.2.16/libphonenumber.js"></script>
-  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/google-libphonenumber/3.2.16/libphonenumber.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/3.5.1/jquery.maskedinput.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -26,7 +25,7 @@
 <hr />
 <div class="registers">
     <div class="">
-        <form asp-action="Create">
+        <form asp-action="Create_" method="post"> @*aqui estou colocando que meu cadastro tem relação direta com Create da minha CadastroController.cs*@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group divisoesCadastro">
@@ -37,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="CPF" class="control-label">CPF</label>
-                    <input asp-for="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>                 
+                    <input name="CPF" class="form-control" type="tel" id="cpfResponsavel" placeholder="000.000.000-00" maxlength="14" onblur="validaCpf()"/>                 
                      <span class="cpfinvalido">CPF inválido</span>
                 </div>
             </div>
@@ -49,8 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="ConfirmacaoEmail" class="control-label">Confirmar e-mail</label>
-                    <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>
-                   
+                    <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>                  
                 </div>
              </div>
 
@@ -58,12 +56,12 @@
           <div  class="form-group divisoesCadastro">
             <div class="form-group ladoEsquerdoDoCadastro">
                 <label asp-for="Contato" class="control-label">Contato</label>
-                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" onkeypress="mascara()" maxlength="15" onblur="validaContatoCelular()"/>
+                <input asp-for="Contato" class="form-control phone-mask" type="tel" id="telefone" name="Contato" placeholder="(00) 00000-0000" onkeypress="mascara()" maxlength="15" onblur="validaContatoCelular()"/>
                   <span class="contatoInvalido">Número inválido</span>
             </div>
             <div class="form-group">
                 <label asp-for="ContatoEmergencial" class="control-label">Contato emergencial</label>
-                <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="telefone" placeholder="(00) 00000-0000" onkeypress="mascara()"  maxlength="15" onblur="validaContatoCelularEmergencial()"/>
+                <input asp-for="ContatoEmergencial" class="form-control phone-mask" type="tel" id="telefoneEmergencial" name="ContatoEmergencial" placeholder="(00) 00000-0000" onkeypress="mascara()"  maxlength="15" onblur="validaContatoCelularEmergencial()"/>
                 <span class="contatoEmergencialInvalido">Número inválido</span>
             </div>
           </div>
@@ -79,22 +77,22 @@
                   <div class="parte1_2_chield">
                       <div class="ladoDireitoInputCrianca">
                           <label>Nome da Criança: </label>
-                          <input class="form-control inputCadCrianas" name="crianca1" type="text" asp-for="NomeCrianca_1" />
+                          <input class="form-control inputCadCrianas" name="NomeCrianca_1" type="text" asp-for="NomeCrianca_1" />
                       </div>
                       <div>                     
                           <label>Data de Nascimento:</label>
-                          <input id="dateBorn1" class="form-control dataNascimentoInput" name="crianca1" type="date" asp-for="DataDeNascimento_1 " onblur="validaNascimento(this);" />
+                          <input id="dateBorn1" class="form-control dataNascimentoInput" name="DataDeNascimento_1" type="date" asp-for="DataDeNascimento_1 " onblur="validaNascimento(this);" />
                           <span class="data1">Data inválida</span>
                       </div> 
                   </div>
                   <div class="parte3_4_chield">
                       <div class="ladoDireitoInputCrianca">
                            <label>Idade da criança:</label>
-                          <input class="form-control" name="crianca1" type="tel" asp-for="IdadeCrianca_1"/>
+                          <input class="form-control" name="IdadeCrianca_1" type="tel" asp-for="IdadeCrianca_1"/>
                       </div>
                       <div>
                           <label>Restrição Alimentar:</label>
-                          <input class="form-control" name="crianca1" type="text" asp-for="RestricaoAlimentar_1 " />
+                          <input class="form-control" name="RestricaoAlimentar_1" type="text" asp-for="RestricaoAlimentar_1 " />
                       </div> 
                   </div>
               </div>
