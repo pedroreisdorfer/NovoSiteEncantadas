@@ -32,7 +32,10 @@ namespace WebEncantadas.Models.ViewModels
         [Display(Name = "ConfirmacaoEmail")]
         public string ConfirmacaoEmail { get; set; }
 
-      
+        [Display(Name = "Senha")]
+        public string Senha { get; set; }
+
+
         [Display(Name = "Contato")]
         public string Contato { get; set; }
 
@@ -106,11 +109,5 @@ namespace WebEncantadas.Models.ViewModels
         public CadastroViewModel()
         {
         }
-
-        //public CadastroViewModel(string id, int cpf, string nome, int contato, string email, string confirmacaoEmail, string NomeCrianca, int IdadeCrianca)
-        //    : this(nome, cpf, contato, email, confirmacaoEmail, NomeCrianca, IdadeCrianca)
-        //{
-        //    this.Id = id;
-        //}
     }
 }

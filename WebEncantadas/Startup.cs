@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using QRCoder;
 using WebEncantadas.Data;
 using Microsoft.EntityFrameworkCore;
+using WebEncantadas.Models.Contracts.Contexts;
 
 namespace WebEncantadas
 {
@@ -28,6 +29,9 @@ namespace WebEncantadas
             services.AddControllersWithViews();
             services.AddDbContext<Contexto>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IConnectionManager, ConnectionManager>(); // NECESSÁRIO PARA ACESSO A NOSSA CONEXÃO COM BANCO DE DADOS. Singleton é pq a instancia é feita apenas uma vez
+            services.AddSingleton<IContextData, ContextDataSqlServer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

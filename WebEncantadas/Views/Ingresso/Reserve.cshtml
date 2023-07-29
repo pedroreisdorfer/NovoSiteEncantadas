@@ -9,9 +9,10 @@
 }
 
 @{
-    var connection = ConnectionManager.GetConnection();
-    connection.Open();
-    var command = new SqlCommand("SELECT num_mesa, valor_cadeira FROM dbo.reserva_ingressos WHERE id = 1", connection);
+    var conexao = new ConnectionManager();
+    var connection_ = conexao.GetConnection(); 
+    connection_.Open();
+    var command = new SqlCommand("SELECT num_mesa, valor_cadeira FROM dbo.reserva_ingressos WHERE id = 1", connection_);
     decimal valor_cadeira = 0;
 
     int num_mesa = 0;

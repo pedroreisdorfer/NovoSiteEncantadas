@@ -29,7 +29,7 @@ namespace WebEncantadas.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create_([Bind("id, NomeResponsavel,CPF,Email,ConfirmacaoEmail,Contato,ContatoEmergencial,NomeCrianca_1,IdadeCrianca_1,DataDeNascimento_1,RestricaoAlimentar_1,NomeCrianca_2,IdadeCrianca_2,DataDeNascimento_2,RestricaoAlimentar_2,NomeCrianca_3,IdadeCrianca_3,DataDeNascimento_3,RestricaoAlimentar_3,NomeCrianca_4,IdadeCrianca_4,DataDeNascimento_4,RestricaoAlimentar_4")] CadastroViewModel cadastro)
+        public async Task<IActionResult> Create_([Bind("id, NomeResponsavel,CPF,Email,ConfirmacaoEmail,Contato,ContatoEmergencial,NomeCrianca_1,IdadeCrianca_1,DataDeNascimento_1,RestricaoAlimentar_1,NomeCrianca_2,IdadeCrianca_2,DataDeNascimento_2,RestricaoAlimentar_2,NomeCrianca_3,IdadeCrianca_3,DataDeNascimento_3,RestricaoAlimentar_3,NomeCrianca_4,IdadeCrianca_4,DataDeNascimento_4,RestricaoAlimentar_4, Senha")] CadastroViewModel cadastro)
         {
             // retorno da View precisa ser revisto
             if (ModelState.IsValid)
@@ -37,7 +37,7 @@ namespace WebEncantadas.Controllers
                 _context.Add(cadastro);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Login");
             }
             return View(cadastro);
         }

@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Business\" />
     <Folder Include="Models\Dtos\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>

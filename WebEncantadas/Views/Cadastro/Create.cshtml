@@ -48,10 +48,19 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="ConfirmacaoEmail" class="control-label">Confirmar e-mail</label>
-                    <input asp-for="ConfirmacaoEmail" class="form-control" id="Confirma_email" onblur="validaConfirmacaoEmail();"/>                  
+                    <input asp-for="ConfirmacaoEmail" class="form-control" id="confirma_email" onblur="validaConfirmacaoEmail();"/>                  
                 </div>
              </div>
-
+               <div class="form-group divisoesCadastro">
+                <div class="form-group ladoEsquerdoDoCadastro">
+                    <label asp-for="Senha" class="control-label">Senha</label>
+                    <input asp-for="Senha" class="form-control" id="senha"  />
+                </div>
+                <div class="form-group">
+                    <label  class="control-label">Confirmar senha</label>
+                    <input class="form-control" id="confirmacaoSenha" onblur="validaConfirmacaoSenha();"/>                  
+                </div>
+             </div>
 
           <div  class="form-group divisoesCadastro">
             <div class="form-group ladoEsquerdoDoCadastro">
@@ -311,12 +320,23 @@
   
     function validaConfirmacaoEmail(){
         var email = document.getElementById("email").value;
-        var confirmacaoEmail = document.getElementById("Confirma_email").value;
+        var confirmacaoEmail = document.getElementById("confirma_email").value;
       
         if(email != confirmacaoEmail){
           
-            $('#Confirma_email').addClass('input-invalido');
+            $('#confirma_email').addClass('input-invalido');
              document.getElementById("email").value = " ";         
+        }
+    }
+
+    function validaConfirmacaoSenha(){
+             var senha = document.getElementById("senha").value;
+        var confirmacaoSenha = document.getElementById("confirmacaoSenha").value;
+      
+        if(senha != confirmacaoSenha){
+          
+            $('#confirmacaoSenha').addClass('input-invalido');
+             document.getElementById("senha").value = " ";         
         }
     }
 
