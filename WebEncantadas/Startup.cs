@@ -11,6 +11,8 @@ using QRCoder;
 using WebEncantadas.Data;
 using Microsoft.EntityFrameworkCore;
 using WebEncantadas.Models.Contracts.Contexts;
+using Microsoft.AspNetCore.Http;
+using WebEncantadas.Helper;
 
 namespace WebEncantadas
 {
@@ -32,6 +34,16 @@ namespace WebEncantadas
 
             services.AddSingleton<IConnectionManager, ConnectionManager>(); // NECESSÁRIO PARA ACESSO A NOSSA CONEXÃO COM BANCO DE DADOS. Singleton é pq a instancia é feita apenas uma vez
             services.AddSingleton<IContextData, ContextDataSqlServer>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<ISessao, Sessao>();
+
+            services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +62,8 @@ namespace WebEncantadas
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession(); // para habilitar as sessões dentro do projeto
 
             app.UseEndpoints(endpoints =>
             {

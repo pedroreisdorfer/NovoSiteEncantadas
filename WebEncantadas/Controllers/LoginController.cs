@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebEncantadas.Data;
+using WebEncantadas.Helper;
 using WebEncantadas.Models.ViewModels;
 
 namespace WebEncantadas.Controllers
@@ -9,9 +10,12 @@ namespace WebEncantadas.Controllers
     {
         private readonly Contexto _context;
 
-        public LoginController(Contexto context)
+        private readonly ISessao _sessao;
+
+        public LoginController(Contexto context, ISessao sessao)
         {
             _context = context;
+            _sessao = sessao;
         }
         public IActionResult Login()
         {
