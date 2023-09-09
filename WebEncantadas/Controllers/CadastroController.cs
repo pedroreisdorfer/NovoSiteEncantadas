@@ -34,6 +34,7 @@ namespace WebEncantadas.Controllers
             // retorno da View precisa ser revisto
             if (ModelState.IsValid)
             {
+               
                 _context.Add(cadastro);
                 await _context.SaveChangesAsync();
 

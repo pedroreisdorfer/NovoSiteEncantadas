@@ -8,8 +8,8 @@
 
             switch (tsql)
             {
-                case TSql.LOGIN_USUARIO:
-                    sql = "";
+                case TSql.EFETUAR_LOGIN:
+                    sql = $"SELECT Emaill, Senha FROM Cadastro where Email = @Login and Senha = @Senha";
                     break;
             }
 

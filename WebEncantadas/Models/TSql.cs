@@ -2,6 +2,6 @@
 {
     public enum TSql
     {
-        LOGIN_USUARIO
+        EFETUAR_LOGIN
     }
 }

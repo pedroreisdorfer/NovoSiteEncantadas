@@ -37,7 +37,7 @@ namespace WebEncantadas
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddScoped<ISessao, Sessao>();
+            services.AddScoped<ISessao, Sessao>(); // quando for chamado meu ISessao, será chamado meu Sessao
 
             services.AddSession(o =>
             {

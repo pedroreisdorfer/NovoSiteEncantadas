@@ -1,12 +1,27 @@
 ﻿using WebEncantadas.Models.Dto;
+using WebEncantadas.Models.Entities;
+using WebEncantadas.Models.ViewModels;
 
 namespace WebEncantadas.Data
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public UsuarioDto EfetuarLogin(UsuarioDto usuarioDto)
+        private readonly Contexto _context;
+
+        public UsuarioRepository(Contexto context)
+        {
+            _context = context;
+        }
+
+        public LoginViewModel EfetuarLogin(LoginViewModel login)
         {
             throw new System.NotImplementedException();
         }
+        public Usuario BuscarLogin(LoginViewModel login)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
     }
 }
