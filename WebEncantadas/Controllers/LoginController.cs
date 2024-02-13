@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebEncantadas.Data;
 using WebEncantadas.Helper;
+using WebEncantadas.Models.Contracts.Services;
 using WebEncantadas.Models.Entities;
 using WebEncantadas.Models.ViewModels;
 
@@ -12,56 +13,68 @@ namespace WebEncantadas.Controllers
     public class LoginController : Controller
     {
         private readonly Contexto _context;
-
         private readonly ISessao _sessao;
         private readonly ConnectionManager _connection = new ConnectionManager();
+        private readonly IUsuarioService _usuarioService;
 
-        public LoginController(Contexto context, ISessao sessao)
+        public LoginController(ISessao sessao, IUsuarioService usuarioService, Contexto contexto)
         {
-            _context = context;
             _sessao = sessao;
+            _usuarioService = usuarioService;
+            _context = contexto;
         }
         public IActionResult Login()
         {
+            //se usuário estiver logado, redirecionar para a home
+            if(_sessao.BuscarSessaoUsuario() != null)
+            {
+                ViewBag.UsuarioLogado = true;
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.UsuarioLogado = false;
             return View();
+        }
+
+        public IActionResult SairSessaoUsuario()
+        {
+            _sessao.RemoverSessaoUsuario();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logar(string login, string senha)
         {
-            // retorno da View precisa ser revisto
-            if (ModelState.IsValid)
+            try
             {
-                LoginViewModel loginViewModel = new LoginViewModel();
-                loginViewModel.Login = login;
-                loginViewModel.Senha = senha;
-
-                List<CadastroViewModel> listaCasdastros = _context.Cadastro.ToList();
-
-                Usuario usuario = new Usuario();
-
-                //essa verificação pode ser feita dentro de uma determinada função
-
-                foreach(var item in listaCasdastros)
+                // retorno da View precisa ser revisto
+                if (ModelState.IsValid)
                 {
-                    if(item.Email == login && item.Senha == senha)
+                    bool usuarioValido = await _usuarioService.ValidarUsuario(login, senha);
+                    if (usuarioValido)
                     {
+                        Usuario usuario = new Usuario();
                         usuario.Login = login;
                         usuario.Senha = senha;
-                        break; // caso achou eu pulo fora do laço de repetição.
+                        _sessao.CriarSessaoUsuario(usuario);
+                        return RedirectToAction("Index", "Home");
                     }
+                    else
+                    {
+                        TempData["MensagemErro"] = $"Login inválido";
+                    }
+
+                    //var query =  SqlManager.GetSql(Models.TSql.EFETUAR_LOGIN);
+
                 }
+                return View("Index");
 
-                //var query =  SqlManager.GetSql(Models.TSql.EFETUAR_LOGIN);
+    }
+            catch (System.Exception)
+            {
 
-                //List<CadastroViewModel> listaCasdastroList = (List<CadastroViewModel>)_context.Cadastro.Where(x => x.Email == login && x.Senha == senha);
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction("Login");
-            }
-            return View(login);
+                throw;
+            };
         }
     }
 }

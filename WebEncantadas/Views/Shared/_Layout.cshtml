@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@*@model WebEncantadas.Models.Entities.Usuario*@
+@model WebEncantadas.Helper.ISessao
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,7 +13,7 @@
 </head>
 
 <style>
-    .linkColor{
+    .linkColor {
         color: #ffffffed !important;
     }
 </style>
@@ -18,48 +21,14 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 minhaNavBar">
             <div class="container">
-                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebEncantadas</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>*@
-
-                @*<img src="@ViewData["QRCodeImage"]" />*@
-
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1 linksCabecalho">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Ingresso" asp-action="Reserve">Compre seu ingresso</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Quem_Somos" asp-action="Quem_Somos">Quem Somos</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Cha" asp-action="Cha">Funcionamento do Chá</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="FotosVideos" asp-action="FotosVideos">Fotos e Vídeos</a>
-                        </li>                     
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Cadastro" asp-action="Create">Cadastre-se</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark linkColor" asp-area="" asp-controller="Duvidas" asp-action="Duvidas">Dúvidas Frequentes</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                @await Component.InvokeAsync("Menu");
+       
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3"> @*ESSA FUNÇÃO FAZ AS CHAMADAS PARA AS MINHAS PÁGINAS*@
-            @RenderBody()   
+        <main role="main" class="pb-3">
+            @*ESSA FUNÇÃO FAZ AS CHAMADAS PARA AS MINHAS PÁGINAS*@
+            @RenderBody()
         </main>
     </div>
 

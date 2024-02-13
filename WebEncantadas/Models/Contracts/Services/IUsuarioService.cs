@@ -1,9 +1,11 @@
-﻿using WebEncantadas.Models.Dto;
+﻿using System.Threading.Tasks;
+using WebEncantadas.Models.Dto;
 
 namespace WebEncantadas.Models.Contracts.Services
 {
     public interface IUsuarioService
     {
-        UsuarioDto EfetuarLogin(UsuarioDto usuario);
+        Task<UsuarioDto> EfetuarLogin(UsuarioDto usuario);
+        Task<bool> ValidarUsuario(string login, string senha);
     }
 }

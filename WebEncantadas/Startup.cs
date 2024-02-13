@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using WebEncantadas.Models.Contracts.Contexts;
 using Microsoft.AspNetCore.Http;
 using WebEncantadas.Helper;
+using WebEncantadas.Models.Contracts.Services;
+using WebEncantadas.Business.ServiceLogin;
 
 namespace WebEncantadas
 {
@@ -34,8 +36,9 @@ namespace WebEncantadas
 
             services.AddSingleton<IConnectionManager, ConnectionManager>(); // NECESSÁRIO PARA ACESSO A NOSSA CONEXÃO COM BANCO DE DADOS. Singleton é pq a instancia é feita apenas uma vez
             services.AddSingleton<IContextData, ContextDataSqlServer>();
+            services.AddScoped<IUsuarioService, LoginService>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // é usado no processo de Sessa, mantendo meu usuário logado
 
             services.AddScoped<ISessao, Sessao>(); // quando for chamado meu ISessao, será chamado meu Sessao
 
@@ -44,6 +47,7 @@ namespace WebEncantadas
                 o.Cookie.HttpOnly = true;
                 o.Cookie.IsEssential = true;
             });
+            //Este método é usado para registrar o serviço de sessão na coleção de serviços do ASP.NET Core. Ele permite que sua aplicação utilize sessões para armazenar dados temporários associados a um usuário específico.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

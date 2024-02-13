@@ -28,8 +28,6 @@ namespace WebEncantadas.Helper
 
         public void CriarSessaoUsuario(Usuario usuario)
         {
-            // a string que vou setar é uma chave e os dados do usário que quero guardar
-            // para transformar meu objeto em string, vou serializar 
             string usuarioJson = JsonConvert.SerializeObject(usuario);
             httpContext_.HttpContext.Session.SetString("sessaoUsuarioLogado", usuarioJson);
         }

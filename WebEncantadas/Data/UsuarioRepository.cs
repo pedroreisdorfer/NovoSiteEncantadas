@@ -12,11 +12,6 @@ namespace WebEncantadas.Data
         {
             _context = context;
         }
-
-        public LoginViewModel EfetuarLogin(LoginViewModel login)
-        {
-            throw new System.NotImplementedException();
-        }
         public Usuario BuscarLogin(LoginViewModel login)
         {
             throw new System.NotImplementedException();
