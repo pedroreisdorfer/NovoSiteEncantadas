@@ -15,6 +15,10 @@ using Microsoft.AspNetCore.Http;
 using WebEncantadas.Helper;
 using WebEncantadas.Models.Contracts.Services;
 using WebEncantadas.Business.ServiceLogin;
+using WebEncantadas.Data.ReservaIngresso.Abstractions;
+using WebEncantadas.Data.ReservaIngresso;
+using WebEncantadas.Business.ServiceReserva.Abstracts;
+using WebEncantadas.Business.ServiceReserva;
 
 namespace WebEncantadas
 {
@@ -37,6 +41,8 @@ namespace WebEncantadas
             services.AddSingleton<IConnectionManager, ConnectionManager>(); // NECESSÁRIO PARA ACESSO A NOSSA CONEXÃO COM BANCO DE DADOS. Singleton é pq a instancia é feita apenas uma vez
             services.AddSingleton<IContextData, ContextDataSqlServer>();
             services.AddScoped<IUsuarioService, LoginService>();
+            services.AddScoped<IReservaRepository, ReservaRepository>();
+            services.AddScoped<IReservaService, ReservaService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); // é usado no processo de Sessa, mantendo meu usuário logado
 

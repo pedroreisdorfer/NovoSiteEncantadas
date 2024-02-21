@@ -57,6 +57,8 @@ namespace WebEncantadas.Controllers
                         usuario.Login = login;
                         usuario.Senha = senha;
                         _sessao.CriarSessaoUsuario(usuario);
+                        TempData["usuarioLogado"] = usuario.Login;
+                        TempData["login"] = usuario.Login;
                         return RedirectToAction("Index", "Home");
                     }
                     else

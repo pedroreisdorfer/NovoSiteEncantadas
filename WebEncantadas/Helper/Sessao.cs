@@ -9,6 +9,8 @@ namespace WebEncantadas.Helper
     {
         private readonly IHttpContextAccessor httpContext_;
 
+        public Usuario Usuario { get; set; }
+
         public Sessao(IHttpContextAccessor httpContext_)
         {
             this.httpContext_ = httpContext_;

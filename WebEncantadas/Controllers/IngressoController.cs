@@ -4,15 +4,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebEncantadas.Business.ServiceReserva.Abstracts;
+using WebEncantadas.Data;
+using WebEncantadas.Data.ReservaIngresso.Abstractions;
+using WebEncantadas.Helper;
+using WebEncantadas.Models.Contracts.Services;
+using WebEncantadas.Models.Entities;
 
 namespace WebEncantadas.Controllers
 {
     public class IngressoController : Controller
     {
         // GET: IngressoController
-        public IActionResult Reserve()
+        private readonly IReservaService _reservaService;
+
+        public IngressoController(IReservaService reservaService)
         {
-            return View();
+            _reservaService = reservaService;
+        }
+
+        public async Task<IActionResult> Reserve()
+        {
+            Mesas mesas = await _reservaService.BuscarEconstruirMesas();
+
+            return View(mesas);
         }
 
         //// GET: IngressoController/Details/5
